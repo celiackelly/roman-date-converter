@@ -1,16 +1,22 @@
 import './App.css';
 import DateFieldset from './components/DateFieldset';
+import OptionsFieldset from './components/OptionsFieldset';
 
 function App() {
+
   return (
-    <main className="App">
+    <>
       <header className="App-header">
-        <h1>Roman Date Calculator</h1>
+          
       </header>
-      <form>
+      <main className="App">
+        <h1>Roman Date Calculator</h1>
+        <form>
           <DateFieldset />
+          <OptionsFieldset isAUCDisabled={false} />   {/* replace hard-coded with state  */}
         </form>
-    </main>
+      </main>
+    </>
   );
 }
 

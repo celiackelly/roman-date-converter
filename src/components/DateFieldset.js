@@ -27,6 +27,7 @@ export default function DateFieldset() {
 
   return (
     <fieldset>
+        {/* add a legend */}
         <label><span className="sr-only">Month</span>
             <select name="month" value={month} onChange={ (e)=> {
                 setMonth(Number(e.target.value));
