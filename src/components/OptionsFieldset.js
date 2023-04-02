@@ -4,14 +4,17 @@ export default function OptionsFieldset({ isAUCDisabled }) {
   return (
     <fieldset>
         {/* add a legend */}
-        <label>abbreviated
+        <label>
             <input type="checkbox" name="abbreviated"></input>
+            abbreviated
         </label>
-        <label>display year
+        <label>
             <input type="checkbox" name="display-year"></input>
+            display year
         </label>
-        <label>display year in A.U.C.
+        <label>
             <input type="checkbox" name="display-AUC-year" disabled={isAUCDisabled}></input>
+            display year in A.U.C.
         </label>
     </fieldset>
   )
