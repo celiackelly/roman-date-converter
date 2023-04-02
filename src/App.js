@@ -12,7 +12,9 @@ function App() {
         <h1>Roman Date Converter</h1>    
           <DateConverter />
       </main>
-      <footer></footer>
+      <footer>
+        This is a footer
+      </footer>
     </>
   );
 }
