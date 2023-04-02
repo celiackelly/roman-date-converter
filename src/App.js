@@ -1,6 +1,5 @@
 import './App.css';
-import Card from './components/Card';
-import DateForm from './components/DateForm';
+import DateConverter from './components/DateConverter';
 
 function App() {
 
@@ -10,10 +9,8 @@ function App() {
         Header- Add navigation, etc. here
       </header>
       <main>
-        <h1>Roman Date Calculator</h1>
-          <Card title="Find the Roman date for">
-            <DateForm />
-          </Card>
+        <h1>Roman Date Converter</h1>    
+          <DateConverter />
       </main>
       <footer></footer>
     </>
