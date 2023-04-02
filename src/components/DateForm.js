@@ -14,7 +14,7 @@ export default function DateForm() {
     <form>
         <DateFieldset />
         <OptionsFieldset isAUCDisabled={false} />   {/* replace hard-coded with state and logic */}
-        <Button type={'submit'} buttonText={'Submit'} onClick={convertDate}></Button>
+        <Button type="submit" buttonText="Submit" onClick={convertDate}></Button>
     </form>
   )
 }
