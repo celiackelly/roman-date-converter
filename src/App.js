@@ -1,21 +1,21 @@
 import './App.css';
-import DateFieldset from './components/DateFieldset';
-import OptionsFieldset from './components/OptionsFieldset';
+import Card from './components/Card';
+import DateForm from './components/DateForm';
 
 function App() {
 
   return (
     <>
       <header className="App-header">
-
+        Header- Add navigation, etc. here
       </header>
-      <main className="App">
+      <main>
         <h1>Roman Date Calculator</h1>
-        <form>
-          <DateFieldset />
-          <OptionsFieldset isAUCDisabled={false} />   {/* replace hard-coded with state snd logic */}
-        </form>
+          <Card title="Find the Roman date for">
+            <DateForm />
+          </Card>
       </main>
+      <footer></footer>
     </>
   );
 }
