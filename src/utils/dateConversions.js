@@ -1,6 +1,6 @@
 //max integer you can express in Roman numerals without a line over is 3999
 //make sure you validate against floats and 0, negative nums
-const integerToRomanNumeral = (num) => {
+function integerToRomanNumeral(num) {
     const map = {
       M: 1000,
       CM: 900,
@@ -31,4 +31,20 @@ const integerToRomanNumeral = (num) => {
     }
     
     return result;
-  };
+}
+
+function convertToRomanDate(day, month) {
+
+}
+
+function formatYear(year, displayAUCYear = false) {
+
+}
+
+function abbreviateDate() {
+
+}
+
+function outputFormattedRomanDate(day, month, year, era, abbreviated = false, displayYear = false, displayAUCYear = false) {
+
+}

@@ -16,13 +16,13 @@ export default function OptionsFieldset({
             abbreviated
         </label>
         <label>
-            <input type="checkbox" name="display-year" 
+            <input type="checkbox" name="displayYear" 
                 onChange={handleDisplayYearChecked}
                 checked={isDisplayYearChecked}></input>
             display year
         </label>
         <label>
-            <input type="checkbox" name="display-AUC-year" 
+            <input type="checkbox" name="displayAUCYear" 
                 checked={isDisplayAUCChecked}
                 onChange={handleDisplayAUCChange}
                 disabled={isBeforeRomeFounded || !isDisplayYearChecked}>
