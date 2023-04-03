@@ -1,11 +1,8 @@
 import { React, useState } from 'react'
 
-export default function DateFieldset() {
-  const today = new Date()  
+export default function DateFieldset( {today, year, handleYearChange, isCommonEra, handleEraChange} ) {
   const [month, setMonth] = useState(today.getMonth() + 1)
   const [day, setDay] = useState(today.getDate())   
-  const [year, setYear] = useState(today.getFullYear())  
-  const [isCommonEra, setIsCommonEra] = useState(true)
 
   function calcDaysInMonth() {
     let daysCount = 31
@@ -54,13 +51,13 @@ export default function DateFieldset() {
         <label><span className="sr-only">Year</span>
             <input name="year" 
                 type="number" min="1" value={year} 
-                onChange={(e) => setYear(Number(e.target.value))}>
+                onChange={handleYearChange}>
             </input>
         </label>
         <label><span className="sr-only">Era</span>
             <select name="era" 
                     value={isCommonEra ? "A.D. / C.E." : "B.C. / B.C.E."} 
-                    onChange={(e) => setIsCommonEra(e.target.value === 'A.D. / C.E.')}>
+                    onChange={handleEraChange}>
                 <option value="A.D. / C.E.">A.D. / C.E.</option>
                 <option value="B.C. / B.C.E.">B.C. / B.C.E.</option>
             </select>
