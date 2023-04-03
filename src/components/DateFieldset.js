@@ -50,7 +50,7 @@ export default function DateFieldset( {today, year, handleYearChange, isCommonEr
         </label>
         <label><span className="sr-only">Year</span>
             <input name="year" 
-                type="number" min="1" value={year} 
+                type="number" min="1" max="3999" step="1" value={year} 
                 onChange={handleYearChange}>
             </input>
         </label>

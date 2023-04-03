@@ -4,6 +4,8 @@ import DateFieldset from './DateFieldset';
 import OptionsFieldset from './OptionsFieldset';
 import Button from './Button';
 
+//put the Roman date conversion functions in a separate utils/dateConversion.js file
+
 export default function DateConverter() {
     const today = new Date()  
     const [year, setYear] = useState(today.getFullYear())
