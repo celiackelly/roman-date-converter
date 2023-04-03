@@ -1,7 +1,12 @@
 import { React, useState}  from 'react'
 
-export default function OptionsFieldset({ isBeforeRomeFounded, isDisplayAUCChecked, handleDisplayAUCChange }) {
-  const [isDisplayYearChecked, setisDisplayYearChecked] = useState(true)
+export default function OptionsFieldset({ 
+    isBeforeRomeFounded, 
+    isDisplayYearChecked, 
+    handleDisplayYearChecked,
+    isDisplayAUCChecked, 
+    handleDisplayAUCChange 
+}) {
 
   return (
     <fieldset>
@@ -12,7 +17,7 @@ export default function OptionsFieldset({ isBeforeRomeFounded, isDisplayAUCCheck
         </label>
         <label>
             <input type="checkbox" name="display-year" 
-                onChange={() => setisDisplayYearChecked(!isDisplayYearChecked)}
+                onChange={handleDisplayYearChecked}
                 checked={isDisplayYearChecked}></input>
             display year
         </label>
