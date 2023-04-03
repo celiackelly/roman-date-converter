@@ -12,6 +12,23 @@ export default function DateConverter() {
     const [isDisplayAUCChecked, setisDisplayAUCChecked] = useState(false)
     const [isDateSubmitted, setIsDateSubmitted] = useState(false)
 
+   function handleYearChange(e) {
+        const isBeforeRomeFounded = e.target.value <= 753 && isCommonEra === false
+        if (isBeforeRomeFounded) { setisDisplayAUCChecked(false) }
+        setYear(Number(e.target.value));
+   }
+
+   function handleEraChange(e) {
+        const isBeforeRomeFounded = year <= 753 && e.target.value === 'B.C. / B.C.E.'
+        if (isBeforeRomeFounded) { setisDisplayAUCChecked(false) }
+        setIsCommonEra(e.target.value === 'A.D. / C.E.');
+    }
+
+    function handleDisplayYearChecked(e) {
+        if (!e.target.checked) { setisDisplayAUCChecked(false) }
+        setisDisplayYearChecked(!isDisplayYearChecked);
+    }
+
     function convertDate() {
         //add actual logic
 
@@ -30,21 +47,6 @@ export default function DateConverter() {
 
        setIsDateSubmitted(true)
    }
-
-   function handleYearChange(e) {
-        setYear(Number(e.target.value));
-        if (e.target.value <= 753 && isCommonEra === false) { setisDisplayAUCChecked(false) }
-   }
-
-   function handleEraChange(e) {
-        setIsCommonEra(e.target.value === 'A.D. / C.E.');
-        if (year <= 753 && e.target.value === 'B.C. / B.C.E.') { setisDisplayAUCChecked(false) }
-    }
-
-    function handleDisplayYearChecked(e) {
-        if (!e.target.checked) { setisDisplayAUCChecked(false) }
-        setisDisplayYearChecked(!isDisplayYearChecked);
-    }
 
     if (!isDateSubmitted) {
         return (
@@ -66,7 +68,7 @@ export default function DateConverter() {
                 <Button 
                     type="submit" 
                     buttonText="Submit"></Button>
-                </form>
+            </form>
           </CardSection>
         );
       } else {
