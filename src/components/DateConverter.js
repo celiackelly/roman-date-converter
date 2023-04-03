@@ -7,9 +7,11 @@ import Button from './Button';
 export default function DateConverter() {
     const today = new Date()  
     const [year, setYear] = useState(today.getFullYear())
-    const [isCommonEra, setIsCommonEra] = useState(true)  
+    const [isCommonEra, setIsCommonEra] = useState(true)
+    const [isDisplayAUCChecked, setisDisplayAUCChecked] = useState(false)
     const [isDateSubmitted, setIsDateSubmitted] = useState(false)
 
+    const isBeforeRomeFounded = year <= 753 && !isCommonEra
 
     function convertDate() {
         //add actual logic
@@ -30,6 +32,16 @@ export default function DateConverter() {
        setIsDateSubmitted(true)
    }
 
+   function handleYearChange(e) {
+        setYear(Number(e.target.value));
+        if (e.target.value <= 753 && isCommonEra === false) { setisDisplayAUCChecked(false) }
+   }
+
+   function handleEraChange(e) {
+        setIsCommonEra(e.target.value === 'A.D. / C.E.');
+        if (year <= 753 && e.target.value === 'B.C. / B.C.E.') { setisDisplayAUCChecked(false) }
+    }
+
     if (!isDateSubmitted) {
         return (
           <CardSection title="Find the Roman date for">
@@ -37,10 +49,14 @@ export default function DateConverter() {
                 <DateFieldset 
                     today={today}
                     year={year} 
-                    handleYearChange={(e) => setYear(Number(e.target.value))}
+                    handleYearChange={handleYearChange}
                     isCommonEra={isCommonEra}
-                    handleEraChange={(e) => setIsCommonEra(e.target.value === 'A.D. / C.E.')}/>
-                <OptionsFieldset isBeforeRomeFounded={year <= 753 && !isCommonEra} />  
+                    handleEraChange={handleEraChange}/>
+                <OptionsFieldset 
+                    isBeforeRomeFounded={isBeforeRomeFounded}
+                    isDisplayAUCChecked={isDisplayAUCChecked}
+                    handleDisplayAUCChange={(e) => setisDisplayAUCChecked(e.target.checked)}
+                    />  
                 <Button 
                     type="submit" 
                     buttonText="Submit"></Button>
