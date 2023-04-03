@@ -11,8 +11,6 @@ export default function DateConverter() {
     const [isDisplayAUCChecked, setisDisplayAUCChecked] = useState(false)
     const [isDateSubmitted, setIsDateSubmitted] = useState(false)
 
-    const isBeforeRomeFounded = year <= 753 && !isCommonEra
-
     function convertDate() {
         //add actual logic
 
@@ -53,7 +51,7 @@ export default function DateConverter() {
                     isCommonEra={isCommonEra}
                     handleEraChange={handleEraChange}/>
                 <OptionsFieldset 
-                    isBeforeRomeFounded={isBeforeRomeFounded}
+                    isBeforeRomeFounded={year <= 753 && !isCommonEra}
                     isDisplayAUCChecked={isDisplayAUCChecked}
                     handleDisplayAUCChange={(e) => setisDisplayAUCChecked(e.target.checked)}
                     />  

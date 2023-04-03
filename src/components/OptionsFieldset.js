@@ -1,7 +1,7 @@
 import { React, useState}  from 'react'
 
 export default function OptionsFieldset({ isBeforeRomeFounded, isDisplayAUCChecked, handleDisplayAUCChange }) {
-  const [isDisplayYearChecked, setisDisplayYearChecked] = useState(false)
+  const [isDisplayYearChecked, setisDisplayYearChecked] = useState(true)
 
   return (
     <fieldset>
