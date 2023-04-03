@@ -3,6 +3,7 @@ import CardSection from './CardSection';
 import DateFieldset from './DateFieldset';
 import OptionsFieldset from './OptionsFieldset';
 import Button from './Button';
+import outputFormattedRomanDate from '../utils/dateConversions'
 
 //put the Roman date conversion functions in a separate utils/dateConversion.js file
 
@@ -31,11 +32,6 @@ export default function DateConverter() {
         setisDisplayYearChecked(!isDisplayYearChecked);
     }
 
-    function convertDate() {
-        //add actual logic
-
-   }
-
    function handleSubmit(e) {
    
         // Prevent the browser from reloading the page
@@ -46,6 +42,7 @@ export default function DateConverter() {
         const formData = new FormData(form); 
         const formJson = Object.fromEntries(formData.entries());
         console.log(formJson);
+        outputFormattedRomanDate()
 
        setIsDateSubmitted(true)
    }

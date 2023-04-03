@@ -18,7 +18,7 @@ function integerToRomanNumeral(num) {
     };
     let result = '';
     
-    for (key in map) {  
+    for (let key in map) {  
       const repeatCounter = Math.floor(num / map[key]);
       
       if (repeatCounter !== 0) {
@@ -33,6 +33,8 @@ function integerToRomanNumeral(num) {
     return result;
 }
 
+function normalizeFormData() {}
+
 function convertToRomanDate(day, month) {
 
 }
@@ -45,6 +47,6 @@ function abbreviateDate() {
 
 }
 
-function outputFormattedRomanDate(day, month, year, era, abbreviated = false, displayYear = false, displayAUCYear = false) {
-
+export default function outputFormattedRomanDate(day, month, year, era, abbreviated = false, displayYear = false, displayAUCYear = false) {
+    console.log('hello imports')
 }
