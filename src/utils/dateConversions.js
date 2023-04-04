@@ -42,9 +42,14 @@ function normalizeFormData(formData) {
     normalizedData.year = Number(normalizedData.year)
     
     //by default in HTML, if a checkbox is checked, the data is submitted with the value "on"; else no data for that checkbox is sent
-    normalizedData.displayYear ?  normalizedData.displayYear = true :     normalizedData.displayYear = false
-    normalizedData.displayAUCYear ?   normalizedData.displayAUCYear = true :   normalizedData.displayAUCYear = false
     normalizedData.abbreviated ?  normalizedData.abbreviated = true : normalizedData.abbreviated = false
+    normalizedData.displayYear ?  normalizedData.displayYear = true : normalizedData.displayYear = false
+    normalizedData.displayYear ?  normalizedData.displayYear = true : normalizedData.displayYear = false
+    normalizedData.displayAUCYear ? normalizedData.displayAUCYear = true : normalizedData.displayAUCYear = false
+    normalizedData.displaySecularNotation ? normalizedData.displaySecularNotation = true : normalizedData.displaySecularNotation = false
+
+    console.log(formJson)
+    console.log(normalizedData)
 
     return normalizedData
 }
@@ -155,7 +160,7 @@ function convertToRomanDate(day, month, year) {
     return romanDate
 }
 
-function formatYear(year, era, displayAUCYear) {
+function formatYear(year, era, displayAUCYear, displaySecularNotation) {
     // look at how the old form deals with BC/AD => AC (ante Christum) / AD (anno Domini); I've also heard post Christum natum
     //maybe you want to add a link to an info section about choices and alternatives, as well as info on changing calendars throughout history, how this calculator arrives at its calculations
 
@@ -170,9 +175,12 @@ function abbreviateDate() {
 }
 
 export default function outputFormattedRomanDate(formData) {
-    const { abbreviated, day, displayAUCYear, displayYear, era, month, year } = normalizeFormData(formData)
+    const { abbreviated, day, displayAUCYear, displaySecularNotation, displayYear, era, month, year } = normalizeFormData(formData)
     
-    const romanDate = convertToRomanDate(day, month, year)
+    // const romanDate = convertToRomanDate(day, month, year)
+    // console.log(romanDate)
 
-    console.log(romanDate)
+    //check to make sure desctructuring is working as exptected, now that you added displaySecularNotation
+
 }
+

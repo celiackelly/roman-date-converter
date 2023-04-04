@@ -3,13 +3,15 @@ import React  from 'react'
 export default function OptionsFieldset({ 
     isBeforeRomeFounded, 
     isDisplayYearChecked, 
-    handleDisplayYearChecked,
+    handleDisplayYearChange,
     isDisplayAUCChecked, 
-    handleDisplayAUCChange 
+    handleDisplayAUCChange, 
+    isSecularNotationChecked, 
+    handleSecularNotationChange
 }) {
 
   return (
-    <fieldset>
+    <fieldset className="options-fieldset">
         {/* add a legend */}
         <label>
             <input type="checkbox" name="abbreviated"></input>
@@ -17,9 +19,17 @@ export default function OptionsFieldset({
         </label>
         <label>
             <input type="checkbox" name="displayYear" 
-                onChange={handleDisplayYearChecked}
+                onChange={handleDisplayYearChange}
                 checked={isDisplayYearChecked}></input>
             display year
+        </label>
+        <label>
+            <input type="checkbox" name="displaySecularNotation" 
+                checked={isSecularNotationChecked}
+                onChange={handleSecularNotationChange}
+                disabled={!isDisplayYearChecked}>
+            </input>
+            display year in secular notation
         </label>
         <label>
             <input type="checkbox" name="displayAUCYear" 
@@ -27,8 +37,13 @@ export default function OptionsFieldset({
                 onChange={handleDisplayAUCChange}
                 disabled={isBeforeRomeFounded || !isDisplayYearChecked}>
             </input>
-            display year in A.U.C.
+            display year <span className="italics">ab urbe condita</span>
         </label>
     </fieldset>
   )
 }
+
+
+//Might make more sense to only show the last two checkboxes if display year is checked
+//rather than enabling disabling, etc
+//could also make these options into a radio select, so only one can be chosen w/o any additional code, state management

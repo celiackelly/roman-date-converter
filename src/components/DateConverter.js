@@ -5,14 +5,13 @@ import OptionsFieldset from './OptionsFieldset';
 import Button from './Button';
 import outputFormattedRomanDate from '../utils/dateConversions'
 
-//put the Roman date conversion functions in a separate utils/dateConversion.js file
-
 export default function DateConverter() {
     const today = new Date()  
     const [year, setYear] = useState(today.getFullYear())
     const [isCommonEra, setIsCommonEra] = useState(true)
     const [isDisplayYearChecked, setisDisplayYearChecked] = useState(true)
     const [isDisplayAUCChecked, setisDisplayAUCChecked] = useState(false)
+    const [isSecularNotationChecked, setisSecularNotationChecked] = useState(false)
     const [isDateSubmitted, setIsDateSubmitted] = useState(false)
 
    function handleYearChange(e) {
@@ -27,9 +26,20 @@ export default function DateConverter() {
         setIsCommonEra(e.target.value === 'A.D. / C.E.');
     }
 
-    function handleDisplayYearChecked(e) {
+    function handleDisplayYearChange(e) {
         if (!e.target.checked) { setisDisplayAUCChecked(false) }
+        if (!e.target.checked) { setisSecularNotationChecked(false) }
         setisDisplayYearChecked(!isDisplayYearChecked);
+    }
+
+    function handleSecularNotationChange(e) {
+        if (e.target.checked) { setisDisplayAUCChecked(false) }
+        setisSecularNotationChecked(e.target.checked)
+    }
+
+    function handleDisplayAUCChange(e) {
+        if (e.target.checked) { setisSecularNotationChecked(false) }
+        setisDisplayAUCChecked(e.target.checked)
     }
 
    function handleSubmit(e) {
@@ -57,9 +67,11 @@ export default function DateConverter() {
                 <OptionsFieldset 
                     isBeforeRomeFounded={year <= 753 && !isCommonEra}
                     isDisplayYearChecked={isDisplayYearChecked}
-                    handleDisplayYearChecked={handleDisplayYearChecked}
+                    handleDisplayYearChange={handleDisplayYearChange}
                     isDisplayAUCChecked={isDisplayAUCChecked}
-                    handleDisplayAUCChange={(e) => setisDisplayAUCChecked(e.target.checked)}
+                    handleDisplayAUCChange={handleDisplayAUCChange}
+                    isSecularNotationChecked={isSecularNotationChecked}
+                    handleSecularNotationChange={handleSecularNotationChange}
                     />  
                 <Button 
                     type="submit" 
@@ -70,6 +82,10 @@ export default function DateConverter() {
       } else {
           return (
             <CardSection title="Converted date">
+                 <Button 
+                    type="button" 
+                    buttonText="Change options" 
+                    onClick={() => alert('can we reload but preserve previous options?')}/>
                 <Button 
                     type="button" 
                     buttonText="Convert another date" 

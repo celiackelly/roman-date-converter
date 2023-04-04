@@ -36,3 +36,15 @@ fieldset {
   border-radius: 25px;
   max-width: 75%;
 }
+
+.italics {
+  font-style: italic;
+}
+
+.options-fieldset {
+  text-align: left;
+}
+
+.options-fieldset label {
+  display: block;
+}
