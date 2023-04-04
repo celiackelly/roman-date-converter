@@ -33,13 +33,29 @@ function integerToRomanNumeral(num) {
     return result;
 }
 
-function normalizeFormData() {}
+function normalizeFormData(formData) {
+    const formJson = Object.fromEntries(formData.entries());
+    const normalizedData = { ...formJson }
+
+    normalizedData.day = Number(normalizedData.day)
+    normalizedData.month = Number(normalizedData.month)
+    normalizedData.year = Number(normalizedData.year)
+    
+    //by default in HTML, if a checkbox is checked, the data is submitted with the value "on"; else no data for that checkbox is sent
+    normalizedData.displayYear ?  normalizedData.displayYear = true :     normalizedData.displayYear = false
+    normalizedData.displayAUCYear ?   normalizedData.displayAUCYear = true :   normalizedData.displayAUCYear = false
+    normalizedData.abbreviated ?  normalizedData.abbreviated = true : normalizedData.abbreviated = false
+
+    return normalizedData
+}
 
 function convertToRomanDate(day, month) {
 
 }
 
-function formatYear(year, displayAUCYear = false) {
+function formatYear(year, era, displayAUCYear = false) {
+    // look at how the old form deals with BC/AD => AC (ante Christum) / AD (anno Domini); I've also heard post Christum natum
+    //maybe you want to add a link to an info section about choices and alternatives
 
 }
 
@@ -47,6 +63,13 @@ function abbreviateDate() {
 
 }
 
-export default function outputFormattedRomanDate(day, month, year, era, abbreviated = false, displayYear = false, displayAUCYear = false) {
-    console.log('hello imports')
+// export default function outputFormattedRomanDate(day, month, year, era, abbreviated = false, displayYear = false, displayAUCYear = false) {
+//     console.log('hey, this is going to be a formatted Roman date!')
+// }
+
+export default function outputFormattedRomanDate(formData) {
+    const { abbreviated, day, displayAUCYear, displayYear, era, month, year } = normalizeFormData(formData)
+    
+    console.log('hey, this is going to be a formatted Roman date!')
+    console.log(abbreviated)
 }

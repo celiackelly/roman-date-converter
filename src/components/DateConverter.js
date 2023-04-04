@@ -38,13 +38,10 @@ export default function DateConverter() {
         e.preventDefault();
 
         // Read the form data
-        const form = e.target;
-        const formData = new FormData(form); 
-        const formJson = Object.fromEntries(formData.entries());
-        console.log(formJson);
-        outputFormattedRomanDate()
+        const formData = new FormData(e.target); 
+        outputFormattedRomanDate(formData)
 
-       setIsDateSubmitted(true)
+        setIsDateSubmitted(true)
    }
 
     if (!isDateSubmitted) {
