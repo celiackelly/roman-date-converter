@@ -49,13 +49,56 @@ function normalizeFormData(formData) {
     return normalizedData
 }
 
-function convertToRomanDate(day, month) {
+function convertToRomanDate(day, month, year) {
+    //create a dictionary of months with accusative and ablative forms
+    const months = {
+        1: { acc: "Ianuarias", abl: "Ianuariis" }, 
+        2: { acc: "Februarias", abl: "Februariis" } ,
+        3: { acc: "Martias", abl: "Martiis"},  
+        4: { acc: "Apriles", abl: "Aprilibus"},  
+        5: { acc: "Maias", abl: "Maiis"},
+        6: { acc: "Iunias", abl: "Iuniis"}, 
+        7: { acc: "Iulias", abl: "Iuliis"},
+        8: { acc: "Augustas", abl: "Augustis"},
+        9: { acc: "Septembres", abl: "Septembribus"},
+        10: { acc: "Octobres", abl: "Octobribus"},
+        11: { acc: "Novembres", abl: "Novembribus"},
+        12: { acc: "Decembres", abl: "Decembribus"},    
+    }
+
+    // calculate the Ides and Nones for the input month, and the Kalends for the next month
+    const markerDays = {}
+
+    // set the kalends for the next month; for easier math, this is the days in the month + 1
+    switch(month) {
+        // 30 days have Sep, Apr, Jun, and Nov
+        case 4:
+        case 6: 
+        case 9: 
+        case 11: 
+            markerDays.kalends = 31;
+            break;
+        // The Roman calendar inserts the leap day after Feb 24th - only dates after that will be affected
+        case 2: 
+            markerDays.kalends = (year % 4 === 0) && day > 24 ? 30 : 29
+            break;
+        default: 
+            markerDays.kalends = 32;
+            break;
+    }
+
+    const romanDate = markerDays.kalends
+
+    return romanDate
+}
+
+function formatYear(year, era, displayAUCYear) {
+    // look at how the old form deals with BC/AD => AC (ante Christum) / AD (anno Domini); I've also heard post Christum natum
+    //maybe you want to add a link to an info section about choices and alternatives, as well as info on changing calendars throughout history, how this calculator arrives at its calculations
 
 }
 
-function formatYear(year, era, displayAUCYear = false) {
-    // look at how the old form deals with BC/AD => AC (ante Christum) / AD (anno Domini); I've also heard post Christum natum
-    //maybe you want to add a link to an info section about choices and alternatives
+function convertEra(era) {
 
 }
 
@@ -63,13 +106,11 @@ function abbreviateDate() {
 
 }
 
-// export default function outputFormattedRomanDate(day, month, year, era, abbreviated = false, displayYear = false, displayAUCYear = false) {
-//     console.log('hey, this is going to be a formatted Roman date!')
-// }
-
 export default function outputFormattedRomanDate(formData) {
     const { abbreviated, day, displayAUCYear, displayYear, era, month, year } = normalizeFormData(formData)
     
+    const romanDate = convertToRomanDate(day, month, year)
+
     console.log('hey, this is going to be a formatted Roman date!')
-    console.log(abbreviated)
+    console.log("month", month, "next kalends", romanDate)
 }
