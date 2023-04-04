@@ -10,36 +10,28 @@ export default function DateConverter() {
     const [year, setYear] = useState(today.getFullYear())
     const [isCommonEra, setIsCommonEra] = useState(true)
     const [isDisplayYearChecked, setisDisplayYearChecked] = useState(true)
-    const [isDisplayAUCChecked, setisDisplayAUCChecked] = useState(false)
-    const [isSecularNotationChecked, setisSecularNotationChecked] = useState(false)
+    const [yearDisplayOption, setYearDisplayOption] = useState("secularNotation")
     const [isDateSubmitted, setIsDateSubmitted] = useState(false)
 
    function handleYearChange(e) {
         const isBeforeRomeFounded = e.target.value <= 753 && isCommonEra === false
-        if (isBeforeRomeFounded) { setisDisplayAUCChecked(false) }
+        if (isBeforeRomeFounded) { setYearDisplayOption(null) }
         setYear(Number(e.target.value));
    }
 
    function handleEraChange(e) {
         const isBeforeRomeFounded = year <= 753 && e.target.value === 'B.C. / B.C.E.'
-        if (isBeforeRomeFounded) { setisDisplayAUCChecked(false) }
+        if (isBeforeRomeFounded) { setYearDisplayOption(null) }
         setIsCommonEra(e.target.value === 'A.D. / C.E.');
     }
 
     function handleDisplayYearChange(e) {
-        if (!e.target.checked) { setisDisplayAUCChecked(false) }
-        if (!e.target.checked) { setisSecularNotationChecked(false) }
+        // if (!e.target.checked) { setYearDisplayOption(null) }
         setisDisplayYearChecked(!isDisplayYearChecked);
     }
 
-    function handleSecularNotationChange(e) {
-        if (e.target.checked) { setisDisplayAUCChecked(false) }
-        setisSecularNotationChecked(e.target.checked)
-    }
-
-    function handleDisplayAUCChange(e) {
-        if (e.target.checked) { setisSecularNotationChecked(false) }
-        setisDisplayAUCChecked(e.target.checked)
+    function handleYearDisplayOptionChange(e) {
+        setYearDisplayOption(e.target.value);
     }
 
    function handleSubmit(e) {
@@ -68,10 +60,8 @@ export default function DateConverter() {
                     isBeforeRomeFounded={year <= 753 && !isCommonEra}
                     isDisplayYearChecked={isDisplayYearChecked}
                     handleDisplayYearChange={handleDisplayYearChange}
-                    isDisplayAUCChecked={isDisplayAUCChecked}
-                    handleDisplayAUCChange={handleDisplayAUCChange}
-                    isSecularNotationChecked={isSecularNotationChecked}
-                    handleSecularNotationChange={handleSecularNotationChange}
+                    yearDisplayOption={yearDisplayOption}
+                    handleYearDisplayOptionChange={handleYearDisplayOptionChange}
                     />  
                 <Button 
                     type="submit" 

@@ -1,14 +1,50 @@
-import React  from 'react'
+import React from 'react'
+
+//Might make more sense to only show the last two checkboxes if display year is checked
+//rather than enabling disabling, etc
+//could also make these options into a radio select, so only one can be chosen w/o any additional code, state management
 
 export default function OptionsFieldset({ 
     isBeforeRomeFounded, 
     isDisplayYearChecked, 
     handleDisplayYearChange,
-    isDisplayAUCChecked, 
-    handleDisplayAUCChange, 
-    isSecularNotationChecked, 
-    handleSecularNotationChange
+    yearDisplayOption,
+    handleYearDisplayOptionChange
 }) {
+
+    const yearDisplayOptionsRadio = (
+        <>
+            <label>
+                <input required 
+                    type="radio" 
+                    name="yearDisplayOption" 
+                    value="secularNotation"
+                    checked={yearDisplayOption === "secularNotation"}
+                    onChange={handleYearDisplayOptionChange}></input>
+                display year in secular notation
+            </label>
+            <label>
+                <input required 
+                    type="radio" 
+                    name="yearDisplayOption" 
+                    value="christianNotation"
+                    checked={yearDisplayOption === "christianNotation"}
+                    onChange={handleYearDisplayOptionChange}></input>
+                display year in Christian notation
+            </label>
+            <label>
+                <input required 
+                    type="radio" 
+                    name="yearDisplayOption" 
+                    value="AUCNotation"
+                    checked={yearDisplayOption === "AUCNotation"}
+                    onChange={handleYearDisplayOptionChange}
+                    disabled={isBeforeRomeFounded || !isDisplayYearChecked}>
+                </input>
+                display year <span className="italics">ab urbe condita</span>
+            </label>
+        </>
+    )  
 
   return (
     <fieldset className="options-fieldset">
@@ -23,27 +59,7 @@ export default function OptionsFieldset({
                 checked={isDisplayYearChecked}></input>
             display year
         </label>
-        <label>
-            <input type="checkbox" name="displaySecularNotation" 
-                checked={isSecularNotationChecked}
-                onChange={handleSecularNotationChange}
-                disabled={!isDisplayYearChecked}>
-            </input>
-            display year in secular notation
-        </label>
-        <label>
-            <input type="checkbox" name="displayAUCYear" 
-                checked={isDisplayAUCChecked}
-                onChange={handleDisplayAUCChange}
-                disabled={isBeforeRomeFounded || !isDisplayYearChecked}>
-            </input>
-            display year <span className="italics">ab urbe condita</span>
-        </label>
+        {isDisplayYearChecked ? yearDisplayOptionsRadio : null}
     </fieldset>
   )
 }
-
-
-//Might make more sense to only show the last two checkboxes if display year is checked
-//rather than enabling disabling, etc
-//could also make these options into a radio select, so only one can be chosen w/o any additional code, state management
