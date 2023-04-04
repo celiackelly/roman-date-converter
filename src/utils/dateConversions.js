@@ -69,7 +69,23 @@ function convertToRomanDate(day, month, year) {
     // calculate the Ides and Nones for the input month, and the Kalends for the next month
     const markerDays = {}
 
-    // set the kalends for the next month; for easier math, this is the days in the month + 1
+    // set the Ides and Nones for the month
+    switch(month) {
+        // March, July, October, May, the Ides are on the 15th day
+        case 3: 
+        case 5: 
+        case 7: 
+        case 10: 
+            markerDays.ides = 15;
+            markerDays.nones = 7;
+            break;
+        default: 
+            markerDays.ides = 13;
+            markerDays.nones = 5;
+            break;
+    }
+
+    // set the Kalends for the next month; for easier math, this is the days in the month + 1
     switch(month) {
         // 30 days have Sep, Apr, Jun, and Nov
         case 4:
@@ -87,7 +103,7 @@ function convertToRomanDate(day, month, year) {
             break;
     }
 
-    const romanDate = markerDays.kalends
+    const romanDate = markerDays
 
     return romanDate
 }
@@ -111,6 +127,5 @@ export default function outputFormattedRomanDate(formData) {
     
     const romanDate = convertToRomanDate(day, month, year)
 
-    console.log('hey, this is going to be a formatted Roman date!')
-    console.log("month", month, "next kalends", romanDate)
+    console.log("month", month, romanDate)
 }
