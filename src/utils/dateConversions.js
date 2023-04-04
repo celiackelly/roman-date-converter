@@ -49,23 +49,7 @@ function normalizeFormData(formData) {
     return normalizedData
 }
 
-function convertToRomanDate(day, month, year) {
-    //create a dictionary of months with accusative and ablative forms
-    const months = {
-        1: { acc: "Ianuarias", abl: "Ianuariis" }, 
-        2: { acc: "Februarias", abl: "Februariis" } ,
-        3: { acc: "Martias", abl: "Martiis"},  
-        4: { acc: "Apriles", abl: "Aprilibus"},  
-        5: { acc: "Maias", abl: "Maiis"},
-        6: { acc: "Iunias", abl: "Iuniis"}, 
-        7: { acc: "Iulias", abl: "Iuliis"},
-        8: { acc: "Augustas", abl: "Augustis"},
-        9: { acc: "Septembres", abl: "Septembribus"},
-        10: { acc: "Octobres", abl: "Octobribus"},
-        11: { acc: "Novembres", abl: "Novembribus"},
-        12: { acc: "Decembres", abl: "Decembribus"},    
-    }
-
+function calculateMarkerDays(day, month, year) {
     // calculate the Ides and Nones for the input month, and the Kalends for the next month
     const markerDays = {}
 
@@ -102,9 +86,72 @@ function convertToRomanDate(day, month, year) {
             markerDays.kalends = 32;
             break;
     }
+    return markerDays
+}
 
-    const romanDate = markerDays
+function convertToRomanDate(day, month, year) {
+    //create a dictionary of months with accusative and ablative forms
+    const months = {
+        1: { acc: "Ianuarias", abl: "Ianuariis" }, 
+        2: { acc: "Februarias", abl: "Februariis" } ,
+        3: { acc: "Martias", abl: "Martiis"},  
+        4: { acc: "Apriles", abl: "Aprilibus"},  
+        5: { acc: "Maias", abl: "Maiis"},
+        6: { acc: "Iunias", abl: "Iuniis"}, 
+        7: { acc: "Iulias", abl: "Iuliis"},
+        8: { acc: "Augustas", abl: "Augustis"},
+        9: { acc: "Septembres", abl: "Septembribus"},
+        10: { acc: "Octobres", abl: "Octobribus"},
+        11: { acc: "Novembres", abl: "Novembribus"},
+        12: { acc: "Decembres", abl: "Decembribus"},    
+    }
 
+    // calculate the Ides and Nones for the input month, and the Kalends for the next month
+    const markerDays = calculateMarkerDays(day, month, year)
+
+    //calculate the Roman date string (month + day)
+    let romanDate
+    switch(day) {
+        //start with the days that fall on the Kalends, Ides, Nones
+        case 1: 
+            romanDate = `Kalendis ${months[month].abl}`;
+            break;
+        case markerDays.nones: 
+            romanDate =`Nonis ${months[month].abl}`;
+            break;
+        case markerDays.ides: 
+            romanDate =`Idibus ${months[month].abl}`;
+            break;
+
+        // Other days will countdown to the next epoch
+		default:
+            //calculate the countdown and start the romanDate string
+            let countdown
+            if (day < markerDays.nones) {
+                countdown = markerDays.nones - day + 1  // countdown Roman style, with inclusive counting
+                romanDate =`Nonas ${months[month].acc}`;    // start the romanDate string
+            } else if (day < markerDays.ides) {
+                countdown = markerDays.ides - day + 1  // countdown Roman style
+                romanDate =`Idus ${months[month].acc}`;    // start the romanDate string
+            } else {
+                // if the date is after the Ides, count down to the Kalends of the next month
+                countdown = markerDays.kalends - day + 1  // countdown Roman style
+                romanDate =`Kalendas ${months[month === 12 ? 1 : month + 1].acc}`;    // start the romanDate string
+            }
+
+            // pridie (the day before) is 2 days before the marker day 
+            if (countdown === 2) { 
+                romanDate = `pridie ${romanDate}`
+            } else {
+                const romanNumeralDay = integerToRomanNumeral(countdown).toLowerCase()
+
+                // normally we just count down, but Feb 25 of a leap year is weird- it's called "ante diem bis vi Kalendas Martias..."
+                const leapYearModifier = (year % 4 === 0) && day === 25 ? 'bis ' : ''
+
+                romanDate = `ante diem ${leapYearModifier}${romanNumeralDay} ${romanDate}`
+            }  
+            break;
+    }
     return romanDate
 }
 
@@ -127,5 +174,5 @@ export default function outputFormattedRomanDate(formData) {
     
     const romanDate = convertToRomanDate(day, month, year)
 
-    console.log("month", month, romanDate)
+    console.log(romanDate)
 }
