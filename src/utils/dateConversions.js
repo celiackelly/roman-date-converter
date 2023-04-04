@@ -45,8 +45,7 @@ function normalizeFormData(formData) {
     normalizedData.abbreviated ?  normalizedData.abbreviated = true : normalizedData.abbreviated = false
     normalizedData.displayYear ?  normalizedData.displayYear = true : normalizedData.displayYear = false
 
-    console.log(normalizedData)
-
+    console.log("normalized data:", normalizedData)
     return normalizedData
 }
 
@@ -180,7 +179,7 @@ export default function outputFormattedRomanDate(formData) {
             yearDisplayOption } = normalizeFormData(formData)
     
     const romanDate = convertToRomanDate(day, month, year)
-    console.log(romanDate)
+    return romanDate
 
 }
 

@@ -12,6 +12,7 @@ export default function DateConverter() {
     const [isDisplayYearChecked, setisDisplayYearChecked] = useState(true)
     const [yearDisplayOption, setYearDisplayOption] = useState("secularNotation")
     const [isDateSubmitted, setIsDateSubmitted] = useState(false)
+    const [romanDate, setRomanDate] = useState('')
 
    function handleYearChange(e) {
         const isBeforeRomeFounded = e.target.value <= 753 && isCommonEra === false
@@ -35,14 +36,14 @@ export default function DateConverter() {
     }
 
    function handleSubmit(e) {
-   
         // Prevent the browser from reloading the page
         e.preventDefault();
 
         // Read the form data
         const formData = new FormData(e.target); 
-        outputFormattedRomanDate(formData)
 
+        //convert to Roman date and set state
+        setRomanDate(outputFormattedRomanDate(formData))
         setIsDateSubmitted(true)
    }
 
@@ -72,7 +73,8 @@ export default function DateConverter() {
       } else {
           return (
             <CardSection title="Converted date">
-                 <Button 
+                <p>{romanDate}</p>
+                <Button 
                     type="button" 
                     buttonText="Change options" 
                     onClick={() => alert('can we reload but preserve previous options?')}/>
