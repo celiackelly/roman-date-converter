@@ -9,7 +9,7 @@ export default function DateConverter() {
     const today = new Date()  
     const [year, setYear] = useState(today.getFullYear())
     const [isCommonEra, setIsCommonEra] = useState(true)
-    const [isDisplayYearChecked, setisDisplayYearChecked] = useState(true)
+    const [isDisplayYearChecked, setisDisplayYearChecked] = useState(false)
     const [yearDisplayOption, setYearDisplayOption] = useState("secularNotation")
     const [isDateSubmitted, setIsDateSubmitted] = useState(false)
     const [romanDate, setRomanDate] = useState('')
@@ -53,6 +53,8 @@ export default function DateConverter() {
     function resetDate() {
         setIsCommonEra(true)
         setYear(today.getFullYear())
+        setisDisplayYearChecked(false)
+        setYearDisplayOption(null)
         //no need to reset day and month here; they're set in DateFieldset.js
     }
 
@@ -87,6 +89,8 @@ export default function DateConverter() {
                     type="button" 
                     buttonText="Change options" 
                     onClick={() => alert('can we reload but preserve previous options?')}/>
+                    {/* to change options, you'd have to move all state up to DateConverter. 
+                    Then you'd save a snapshot of all the options in state in the form's handleSubmit. Then onClick, you'd reset all inputs and state to the snapshot. Look back at the React tic-tac-toe tutorial- game history */}
                 <Button 
                     type="button" 
                     buttonText="Convert another date" 
