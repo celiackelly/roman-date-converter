@@ -181,8 +181,15 @@ function formatYear(year, era, yearDisplayOption) {
     return `${integerToRomanNumeral(year)} ${notation}`
 }
 
-function abbreviateDate() {
+function abbreviateDate(fullDateString) {
+    let abbreviatedDate = fullDateString
+    abbreviatedDate = abbreviatedDate.replace('ante diem', 'a.d.')
 
+    //abbreviate day/month; remember to include periods
+    abbreviatedDate = abbreviatedDate.replace(/(prid|Kal|Id|Non|Ian|Feb|Mart|Apr|Aug|Sept|Oct|Nov|Dec)\w+/g, '$1.')
+    //abbreviate year notation 
+    
+    return abbreviatedDate
 }
 
 export default function outputFormattedRomanDate(formData) {
@@ -198,7 +205,11 @@ export default function outputFormattedRomanDate(formData) {
 
     const formattedYear = displayYear ? formatYear(year, era, yearDisplayOption) : ''
 
-    return `${romanDate} ${formattedYear}`
+    let fullDateString = `${romanDate} ${formattedYear}`
+
+    return abbreviated ? abbreviateDate(fullDateString) : fullDateString
+
+    //if (abbreviated) - output abbreviated date
 
 }
 
