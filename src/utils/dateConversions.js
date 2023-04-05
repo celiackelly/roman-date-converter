@@ -32,7 +32,7 @@ function integerToRomanNumeral(num) {
     return result;
 }
 
-function normalizeFormData(formData) {
+export function normalizeFormData(formData) {
     const formJson = Object.fromEntries(formData.entries());
     const normalizedData = { ...formJson }
 
@@ -198,7 +198,7 @@ export function outputFormattedRomanDate(formData) {
             era, 
             month, 
             year, 
-            yearDisplayOption } = normalizeFormData(formData)
+            yearDisplayOption } = formData
     
     const romanDate = convertToRomanDate(day, month, year)
 

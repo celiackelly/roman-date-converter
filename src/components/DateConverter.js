@@ -3,7 +3,7 @@ import CardSection from './CardSection';
 import DateFieldset from './DateFieldset';
 import OptionsFieldset from './OptionsFieldset';
 import Button from './Button';
-import { outputFormattedRomanDate , abbreviateDate } from '../utils/dateConversions'
+import { outputFormattedRomanDate, normalizeFormData, abbreviateDate } from '../utils/dateConversions'
 
 export default function DateConverter() {
     const today = new Date()  
@@ -12,8 +12,10 @@ export default function DateConverter() {
     const [isDisplayYearChecked, setIsDisplayYearChecked] = useState(false)
     const [yearDisplayOption, setYearDisplayOption] = useState("secularNotation")
     const [isDateSubmitted, setIsDateSubmitted] = useState(false)
-    const [romanDate, setRomanDate] = useState('')
+    const [submittedFormData, setSubmittedFormData] = useState(null) 
     const [isAbbreviatedChecked, setIsAbbreviatedChecked] = useState(false)
+
+    const romanDate = submittedFormData ? outputFormattedRomanDate(submittedFormData) : null
 
    function handleYearChange(e) {
         const isBeforeRomeFounded = e.target.value <= 753 && isCommonEra === false
@@ -43,8 +45,10 @@ export default function DateConverter() {
         // Read the form data
         const formData = new FormData(e.target); 
 
-        //convert to Roman date and set state
-        setRomanDate(outputFormattedRomanDate(formData))
+        //normalize submitted form data and save in state
+        setSubmittedFormData(normalizeFormData(formData))
+
+        //Change state so results card is shown instead of form 
         setIsDateSubmitted(true)
     }
 
@@ -54,7 +58,7 @@ export default function DateConverter() {
         setIsDisplayYearChecked(false)
         setYearDisplayOption(null)
         setIsAbbreviatedChecked(false)
-        setRomanDate('')
+        setSubmittedFormData(null)
         //no need to reset day and month here; they're set in DateFieldset.js
     }
 
