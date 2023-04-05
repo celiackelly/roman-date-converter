@@ -1,5 +1,5 @@
-//max integer you can express in Roman numerals without a line over is 3999
 function integerToRomanNumeral(num) {
+    //max integer you can express in Roman numerals without a line over is 3999
     const map = {
       M: 1000,
       CM: 900,
@@ -205,6 +205,4 @@ export function outputFormattedRomanDate(formData) {
     const formattedYear = displayYear ? formatYear(year, era, yearDisplayOption) : ''
 
     return `${romanDate} ${formattedYear}`
-
-    // return abbreviated ? abbreviateDate(fullDateString) : fullDateString
 }
