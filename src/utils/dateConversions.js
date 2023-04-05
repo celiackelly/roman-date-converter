@@ -183,12 +183,19 @@ function formatYear(year, era, yearDisplayOption) {
 
 function abbreviateDate(fullDateString) {
     let abbreviatedDate = fullDateString
+
     abbreviatedDate = abbreviatedDate.replace('ante diem', 'a.d.')
 
     //abbreviate day/month; remember to include periods
     abbreviatedDate = abbreviatedDate.replace(/(prid|Kal|Id|Non|Ian|Feb|Mart|Apr|Aug|Sept|Oct|Nov|Dec)\w+/g, '$1.')
+
     //abbreviate year notation 
-    
+    abbreviatedDate = abbreviatedDate.replace('ab urbe condita', 'A.U.C.')
+    abbreviatedDate = abbreviatedDate.replace('ante aeram vulgarem', 'ante aer. vulg.')
+    abbreviatedDate = abbreviatedDate.replace('aerae vulgaris', 'aer. vulg.')
+    abbreviatedDate = abbreviatedDate.replace('ante Christum natum', 'a.C.n.')
+    abbreviatedDate = abbreviatedDate.replace('post Christum natum', 'p.C.n.')
+
     return abbreviatedDate
 }
 
