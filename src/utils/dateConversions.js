@@ -1,5 +1,4 @@
 //max integer you can express in Roman numerals without a line over is 3999
-//make sure you validate against floats and 0, negative nums
 function integerToRomanNumeral(num) {
     const map = {
       M: 1000,
@@ -156,9 +155,6 @@ function convertToRomanDate(day, month, year) {
 }
 
 function formatYear(year, era, yearDisplayOption) {
-    // look at how the old form deals with BC/AD => AC (ante Christum) / AD (anno Domini); I've also heard post Christum natum
-    //maybe you want to add a link to an info section about choices and alternatives, as well as info on changing calendars throughout history, how this calculator arrives at its calculations
-
     let notation 
 
     if (yearDisplayOption === 'AUCNotation') {
@@ -215,8 +211,4 @@ export default function outputFormattedRomanDate(formData) {
     let fullDateString = `${romanDate} ${formattedYear}`
 
     return abbreviated ? abbreviateDate(fullDateString) : fullDateString
-
-    //if (abbreviated) - output abbreviated date
-
 }
-
