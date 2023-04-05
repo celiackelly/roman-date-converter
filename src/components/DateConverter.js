@@ -7,6 +7,8 @@ import { outputFormattedRomanDate, normalizeFormData, abbreviateDate } from '../
 
 export default function DateConverter() {
     const today = new Date()  
+    const [month, setMonth] = useState(today.getMonth() + 1)
+    const [day, setDay] = useState(today.getDate())   
     const [year, setYear] = useState(today.getFullYear())
     const [isCommonEra, setIsCommonEra] = useState(true)
     const [isDisplayYearChecked, setIsDisplayYearChecked] = useState(false)
@@ -54,6 +56,10 @@ export default function DateConverter() {
         setIsDateSubmitted(true)
     }
 
+    // function changeOptions() {
+            
+    // }
+
     function resetDate() {
         setIsCommonEra(true)
         setYear(today.getFullYear())
@@ -69,7 +75,10 @@ export default function DateConverter() {
           <CardSection title="Find the Roman date for">
             <form method="post" onSubmit={handleSubmit}>
                 <DateFieldset 
-                    today={today}
+                    month={month}
+                    handleMonthChange={ (e) => setMonth(e.target.value) }
+                    day={day}
+                    handleDayChange={ (e) => setDay(e.target.value) }
                     year={year} 
                     handleYearChange={handleYearChange}
                     isCommonEra={isCommonEra}

@@ -1,8 +1,6 @@
 import { React, useState } from 'react'
 
-export default function DateFieldset( {today, year, handleYearChange, isCommonEra, handleEraChange} ) {
-  const [month, setMonth] = useState(today.getMonth() + 1)
-  const [day, setDay] = useState(today.getDate())   
+export default function DateFieldset( {month, day, year, handleMonthChange, handleDayChange, handleYearChange, isCommonEra, handleEraChange} ) {
 
   function calcDaysInMonth() {
     let daysCount = 31
@@ -26,9 +24,7 @@ export default function DateFieldset( {today, year, handleYearChange, isCommonEr
     <fieldset>
         {/* add a legend */}
         <label><span className="sr-only">Month</span>
-            <select name="month" value={month} onChange={ (e)=> {
-                setMonth(Number(e.target.value));
-                }}>
+            <select name="month" value={month} onChange={handleMonthChange}>
                 <option value="1">January</option>
                 <option value="2">February</option>
                 <option value="3">March</option>
@@ -44,7 +40,7 @@ export default function DateFieldset( {today, year, handleYearChange, isCommonEr
             </select>
         </label>
         <label><span className="sr-only">Day</span>
-            <select name="day" value={day} onChange={(e) => setDay(Number(e.target.value))}>
+            <select name="day" value={day} onChange={handleDayChange}>
                 {dayOptions}
             </select>
         </label>
