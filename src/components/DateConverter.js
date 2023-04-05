@@ -3,16 +3,17 @@ import CardSection from './CardSection';
 import DateFieldset from './DateFieldset';
 import OptionsFieldset from './OptionsFieldset';
 import Button from './Button';
-import outputFormattedRomanDate from '../utils/dateConversions'
+import { outputFormattedRomanDate , abbreviateDate } from '../utils/dateConversions'
 
 export default function DateConverter() {
     const today = new Date()  
     const [year, setYear] = useState(today.getFullYear())
     const [isCommonEra, setIsCommonEra] = useState(true)
-    const [isDisplayYearChecked, setisDisplayYearChecked] = useState(false)
+    const [isDisplayYearChecked, setIsDisplayYearChecked] = useState(false)     //fix camel casing
     const [yearDisplayOption, setYearDisplayOption] = useState("secularNotation")
     const [isDateSubmitted, setIsDateSubmitted] = useState(false)
     const [romanDate, setRomanDate] = useState('')
+    const [isAbbreviatedChecked, setIsAbbreviatedChecked] = useState(false)
 
    function handleYearChange(e) {
         const isBeforeRomeFounded = e.target.value <= 753 && isCommonEra === false
@@ -28,7 +29,7 @@ export default function DateConverter() {
 
     function handleDisplayYearChange(e) {
         // if (!e.target.checked) { setYearDisplayOption(null) }
-        setisDisplayYearChecked(!isDisplayYearChecked);
+        setIsDisplayYearChecked(!isDisplayYearChecked);
     }
 
     function handleYearDisplayOptionChange(e) {
@@ -53,8 +54,9 @@ export default function DateConverter() {
     function resetDate() {
         setIsCommonEra(true)
         setYear(today.getFullYear())
-        setisDisplayYearChecked(false)
+        setIsDisplayYearChecked(false)
         setYearDisplayOption(null)
+        setIsAbbreviatedChecked(false)
         //no need to reset day and month here; they're set in DateFieldset.js
     }
 
@@ -84,7 +86,11 @@ export default function DateConverter() {
       } else {
           return (
             <CardSection title="Converted date">
-                <p>{romanDate}</p>
+                <p>{isAbbreviatedChecked ? abbreviateDate(romanDate) : romanDate}</p>
+                <label>
+                    <input type="checkbox" name="abbreviated" checked={isAbbreviatedChecked} onChange={ (e)=> setIsAbbreviatedChecked(!isAbbreviatedChecked)}></input>
+                    display abbreviated date
+                </label>
                 <Button 
                     type="button" 
                     buttonText="Change options" 

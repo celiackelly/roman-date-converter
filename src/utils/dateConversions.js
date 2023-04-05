@@ -40,11 +40,8 @@ function normalizeFormData(formData) {
     normalizedData.month = Number(normalizedData.month)
     normalizedData.year = Number(normalizedData.year)
     
-    //by default in HTML, if a checkbox is checked, the data is submitted with the value "on"; else no data for that checkbox is sent. For each checkbox, normalize value to true or false. 
-    normalizedData.abbreviated ?  normalizedData.abbreviated = true : normalizedData.abbreviated = false
+    //by default in HTML, if a checkbox is checked, the data is submitted with the value "on"; else no data for that checkbox is sent. 
     normalizedData.displayYear ?  normalizedData.displayYear = true : normalizedData.displayYear = false
-
-    console.log("normalized data:", normalizedData)
     return normalizedData
 }
 
@@ -177,7 +174,7 @@ function formatYear(year, era, yearDisplayOption) {
     return `${integerToRomanNumeral(year)} ${notation}`
 }
 
-function abbreviateDate(fullDateString) {
+export function abbreviateDate(fullDateString) {
     let abbreviatedDate = fullDateString
 
     abbreviatedDate = abbreviatedDate.replace('ante diem', 'a.d.')
@@ -195,9 +192,8 @@ function abbreviateDate(fullDateString) {
     return abbreviatedDate
 }
 
-export default function outputFormattedRomanDate(formData) {
-    const { abbreviated, 
-            day, 
+export function outputFormattedRomanDate(formData) {
+    const { day, 
             displayYear, 
             era, 
             month, 
@@ -208,7 +204,7 @@ export default function outputFormattedRomanDate(formData) {
 
     const formattedYear = displayYear ? formatYear(year, era, yearDisplayOption) : ''
 
-    let fullDateString = `${romanDate} ${formattedYear}`
+    return `${romanDate} ${formattedYear}`
 
-    return abbreviated ? abbreviateDate(fullDateString) : fullDateString
+    // return abbreviated ? abbreviateDate(fullDateString) : fullDateString
 }

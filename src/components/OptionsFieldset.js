@@ -1,9 +1,5 @@
 import React from 'react'
 
-//Might make more sense to only show the last two checkboxes if display year is checked
-//rather than enabling disabling, etc
-//could also make these options into a radio select, so only one can be chosen w/o any additional code, state management
-
 export default function OptionsFieldset({ 
     isBeforeRomeFounded, 
     isDisplayYearChecked, 
@@ -49,10 +45,6 @@ export default function OptionsFieldset({
   return (
     <fieldset className="options-fieldset">
         {/* add a legend */}
-        <label>
-            <input type="checkbox" name="abbreviated"></input>
-            abbreviated
-        </label>
         <label>
             <input type="checkbox" name="displayYear" 
                 onChange={handleDisplayYearChange}
