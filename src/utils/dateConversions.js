@@ -32,21 +32,6 @@ function integerToRomanNumeral(num) {
     return result;
 }
 
-export function normalizeFormData(formData) {
-    const formJson = Object.fromEntries(formData.entries());
-    const normalizedData = { ...formJson }
-
-    normalizedData.day = Number(normalizedData.day)
-    normalizedData.month = Number(normalizedData.month)
-    normalizedData.year = Number(normalizedData.year)
-    
-    //by default in HTML, if a checkbox is checked, the data is submitted with the value "on"; else no data for that checkbox is sent. 
-    normalizedData.displayYear ?  normalizedData.displayYear = true : normalizedData.displayYear = false
-    if (!normalizedData.yearDisplayOption) { normalizedData.yearDisplayOption = null }
-    
-    return normalizedData
-}
-
 function calculateMarkerDays(day, month, year) {
     // calculate the Ides and Nones for the input month, and the Kalends for the next month
     const markerDays = {}
@@ -174,6 +159,25 @@ function formatYear(year, era, yearDisplayOption) {
     }
 
     return `${integerToRomanNumeral(year)} ${notation}`
+}
+
+// export function checkBeforeRomeFounded(month, day, year, era) {
+//     if (era) { return }
+// }
+
+export function normalizeFormData(formData) {
+    const formJson = Object.fromEntries(formData.entries());
+    const normalizedData = { ...formJson }
+
+    normalizedData.day = Number(normalizedData.day)
+    normalizedData.month = Number(normalizedData.month)
+    normalizedData.year = Number(normalizedData.year)
+    
+    //by default in HTML, if a checkbox is checked, the data is submitted with the value "on"; else no data for that checkbox is sent. 
+    normalizedData.displayYear ?  normalizedData.displayYear = true : normalizedData.displayYear = false
+    if (!normalizedData.yearDisplayOption) { normalizedData.yearDisplayOption = null }
+    
+    return normalizedData
 }
 
 export function abbreviateDate(fullDateString) {

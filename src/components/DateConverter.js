@@ -10,9 +10,9 @@ export default function DateConverter() {
     const [month, setMonth] = useState(today.getMonth() + 1)
     const [day, setDay] = useState(today.getDate())   
     const [year, setYear] = useState(today.getFullYear())
-    const [isCommonEra, setIsCommonEra] = useState(true)
+    const [era, setEra] = useState('A.D. / C.E.')
     const [isDisplayYearChecked, setIsDisplayYearChecked] = useState(false)
-    const [yearDisplayOption, setYearDisplayOption] = useState("secularNotation")
+    const [yearDisplayOption, setYearDisplayOption] = useState('secularNotation')
     const [isDateSubmitted, setIsDateSubmitted] = useState(false)
     const [submittedFormData, setSubmittedFormData] = useState(null) 
     const [isAbbreviatedChecked, setIsAbbreviatedChecked] = useState(false)
@@ -20,7 +20,7 @@ export default function DateConverter() {
     const romanDate = submittedFormData ? outputFormattedRomanDate(submittedFormData) : null
 
    function handleYearChange(e) {
-        const isBeforeRomeFounded = e.target.value > 753 && isCommonEra === false
+        const isBeforeRomeFounded = e.target.value > 753 && era === 'B.C. / B.C.E.'
         if (isBeforeRomeFounded) { setYearDisplayOption(null) }
         setYear(Number(e.target.value));
    }
@@ -28,12 +28,12 @@ export default function DateConverter() {
    function handleEraChange(e) {
         const isBeforeRomeFounded = year > 753 && e.target.value === 'B.C. / B.C.E.'
         if (isBeforeRomeFounded) { setYearDisplayOption(null) }
-        setIsCommonEra(e.target.value === 'A.D. / C.E.');
+        setEra(e.target.value);
     }
 
     function handleDisplayYearChange(e) {
         if (!e.target.checked) { setYearDisplayOption(null) }
-        const isBeforeRomeFounded = year > 753 && isCommonEra === false
+        const isBeforeRomeFounded = year > 753 && era === 'B.C. / B.C.E.'
         if (isBeforeRomeFounded) { setYearDisplayOption(null) }
         setIsDisplayYearChecked(!isDisplayYearChecked);
     }
@@ -60,7 +60,7 @@ export default function DateConverter() {
         setDay(submittedFormData.day)
         setMonth(submittedFormData.month)
         setYear(submittedFormData.year)
-        setIsCommonEra(submittedFormData.era)
+        setEra(submittedFormData.era)
         setIsDisplayYearChecked(submittedFormData.displayYear)
         setYearDisplayOption(submittedFormData.yearDisplayOption)
         setIsAbbreviatedChecked(false)
@@ -73,7 +73,7 @@ export default function DateConverter() {
         setDay(today.getDate())
         setMonth(today.getMonth() + 1)
         setYear(today.getFullYear())
-        setIsCommonEra(true)
+        setEra('A.D. / C.E.')
         setIsDisplayYearChecked(false)
         setYearDisplayOption(null)
         setIsAbbreviatedChecked(false)
@@ -91,10 +91,10 @@ export default function DateConverter() {
                     handleDayChange={ (e) => setDay(e.target.value) }
                     year={year} 
                     handleYearChange={handleYearChange}
-                    isCommonEra={isCommonEra}
+                    era={era}
                     handleEraChange={handleEraChange}/>
                 <OptionsFieldset 
-                    isBeforeRomeFounded={year > 753 && !isCommonEra}
+                    isBeforeRomeFounded={year > 753 && era === 'B.C. / B.C.E.'}
                     isDisplayYearChecked={isDisplayYearChecked}
                     handleDisplayYearChange={handleDisplayYearChange}
                     yearDisplayOption={yearDisplayOption}

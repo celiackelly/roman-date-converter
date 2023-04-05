@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function DateFieldset( {month, day, year, handleMonthChange, handleDayChange, handleYearChange, isCommonEra, handleEraChange} ) {
+export default function DateFieldset({ month, day, year, handleMonthChange, handleDayChange, handleYearChange, era, handleEraChange }) {
 
   function calcDaysInMonth() {
     let daysCount = 31
@@ -52,7 +52,7 @@ export default function DateFieldset( {month, day, year, handleMonthChange, hand
         </label>
         <label><span className="sr-only">Era</span>
             <select name="era" 
-                    value={isCommonEra ? "A.D. / C.E." : "B.C. / B.C.E."} 
+                    value={era} 
                     onChange={handleEraChange}>
                 <option value="A.D. / C.E.">A.D. / C.E.</option>
                 <option value="B.C. / B.C.E.">B.C. / B.C.E.</option>
