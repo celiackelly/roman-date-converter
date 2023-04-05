@@ -3,7 +3,7 @@ import CardSection from './CardSection';
 import DateFieldset from './DateFieldset';
 import OptionsFieldset from './OptionsFieldset';
 import Button from './Button';
-import { outputFormattedRomanDate, normalizeFormData, abbreviateDate } from '../utils/dateConversions'
+import { outputFormattedRomanDate, normalizeFormData, abbreviateDate, checkBeforeRomeFounded } from '../utils/dateConversions'
 
 export default function DateConverter() {
     const today = new Date()  
@@ -19,21 +19,36 @@ export default function DateConverter() {
 
     const romanDate = submittedFormData ? outputFormattedRomanDate(submittedFormData) : null
 
+    function handleMonthChange(e) {
+        const isBeforeRomeFounded = checkBeforeRomeFounded(day, e.target.value, year, era)
+        if (isBeforeRomeFounded) { setYearDisplayOption(null) }
+        setMonth(Number(e.target.value)) 
+    }
+
+    function handleDayChange(e) {
+        const isBeforeRomeFounded = checkBeforeRomeFounded(e.target.value, month, year, era)
+        if (isBeforeRomeFounded) { setYearDisplayOption(null) }
+        setDay(Number(e.target.value)) 
+    }
+
    function handleYearChange(e) {
-        const isBeforeRomeFounded = e.target.value > 753 && era === 'B.C. / B.C.E.'
+        // const isBeforeRomeFounded = e.target.value > 753 && era === 'B.C. / B.C.E.'
+        const isBeforeRomeFounded = checkBeforeRomeFounded(day, month, e.target.value, era)
         if (isBeforeRomeFounded) { setYearDisplayOption(null) }
         setYear(Number(e.target.value));
    }
 
    function handleEraChange(e) {
-        const isBeforeRomeFounded = year > 753 && e.target.value === 'B.C. / B.C.E.'
+        // const isBeforeRomeFounded = year > 753 && e.target.value === 'B.C. / B.C.E.'
+        const isBeforeRomeFounded = checkBeforeRomeFounded(day, month, year, e.target.value)
         if (isBeforeRomeFounded) { setYearDisplayOption(null) }
         setEra(e.target.value);
     }
 
     function handleDisplayYearChange(e) {
         if (!e.target.checked) { setYearDisplayOption(null) }
-        const isBeforeRomeFounded = year > 753 && era === 'B.C. / B.C.E.'
+        // const isBeforeRomeFounded = year > 753 && era === 'B.C. / B.C.E.'
+        const isBeforeRomeFounded = checkBeforeRomeFounded(day, month, year, era)
         if (isBeforeRomeFounded) { setYearDisplayOption(null) }
         setIsDisplayYearChecked(!isDisplayYearChecked);
     }
@@ -86,15 +101,15 @@ export default function DateConverter() {
             <form method="post" onSubmit={handleSubmit}>
                 <DateFieldset 
                     month={month}
-                    handleMonthChange={ (e) => setMonth(e.target.value) }
+                    handleMonthChange={handleMonthChange}
                     day={day}
-                    handleDayChange={ (e) => setDay(e.target.value) }
+                    handleDayChange={handleDayChange}
                     year={year} 
                     handleYearChange={handleYearChange}
                     era={era}
                     handleEraChange={handleEraChange}/>
                 <OptionsFieldset 
-                    isBeforeRomeFounded={year > 753 && era === 'B.C. / B.C.E.'}
+                    isBeforeRomeFounded={checkBeforeRomeFounded(day, month, year, era)}
                     isDisplayYearChecked={isDisplayYearChecked}
                     handleDisplayYearChange={handleDisplayYearChange}
                     yearDisplayOption={yearDisplayOption}

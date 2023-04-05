@@ -161,9 +161,29 @@ function formatYear(year, era, yearDisplayOption) {
     return `${integerToRomanNumeral(year)} ${notation}`
 }
 
-// export function checkBeforeRomeFounded(month, day, year, era) {
-//     if (era) { return }
-// }
+export function checkBeforeRomeFounded(day, month, year, era) {
+    month = Number(month)
+    day = Number(day)
+
+    //if it's C.E., it's definitely not before the founding
+    if (era === 'A.D. / C.E.') { return false }
+
+    //if it's B.C.E. and the year is greater/earlier than 753, it's before the founding
+    if (year > 753) { return true }
+    if (year < 753) { return false}
+
+    if (year === 753) {
+        if (month < 4) { 
+            return true 
+        } else if (month > 4) {
+            return false 
+        } else if (day < 21) {   //if we're in April and the day is before April 21, it's before
+            return true 
+        } else { 
+            return false 
+        }
+    }
+}
 
 export function normalizeFormData(formData) {
     const formJson = Object.fromEntries(formData.entries());
