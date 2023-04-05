@@ -42,6 +42,8 @@ export function normalizeFormData(formData) {
     
     //by default in HTML, if a checkbox is checked, the data is submitted with the value "on"; else no data for that checkbox is sent. 
     normalizedData.displayYear ?  normalizedData.displayYear = true : normalizedData.displayYear = false
+    if (!normalizedData.yearDisplayOption) { normalizedData.yearDisplayOption = null }
+    
     return normalizedData
 }
 
