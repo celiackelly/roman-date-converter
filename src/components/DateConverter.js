@@ -35,7 +35,7 @@ export default function DateConverter() {
         setYearDisplayOption(e.target.value);
     }
 
-   function handleSubmit(e) {
+    function handleSubmit(e) {
         // Prevent the browser from reloading the page
         e.preventDefault();
 
@@ -45,7 +45,16 @@ export default function DateConverter() {
         //convert to Roman date and set state
         setRomanDate(outputFormattedRomanDate(formData))
         setIsDateSubmitted(true)
-   }
+
+        //reset date to today 
+        resetDate()
+    }
+
+    function resetDate() {
+        setIsCommonEra(true)
+        setYear(today.getFullYear())
+        //no need to reset day and month here; they're set in DateFieldset.js
+    }
 
     if (!isDateSubmitted) {
         return (

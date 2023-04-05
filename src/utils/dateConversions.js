@@ -155,14 +155,30 @@ function convertToRomanDate(day, month, year) {
     return romanDate
 }
 
-function formatYear(year, era, displayAUCYear, displaySecularNotation) {
+function formatYear(year, era, yearDisplayOption) {
     // look at how the old form deals with BC/AD => AC (ante Christum) / AD (anno Domini); I've also heard post Christum natum
     //maybe you want to add a link to an info section about choices and alternatives, as well as info on changing calendars throughout history, how this calculator arrives at its calculations
 
-}
+    let notation 
 
-function convertEra(era) {
+    if (yearDisplayOption === 'AUCNotation') {
+        if (era === 'A.D. / C.E.') { 
+            year = year + 753 
+        } else {
+            year = 754 - year
+        }
+        notation = 'ab urbe condita'
+    } 
+    //otherwise, it's B.C or A.D, in secular or Christian notation - 4 possibilities
+    if (yearDisplayOption === 'secularNotation') {
+        notation = (era === 'B.C. / B.C.E.') ? 'ante aeram vulgarem' : 'aerae vulgaris'
+    }
 
+    if (yearDisplayOption === 'christianNotation') {
+        notation = (era === 'B.C. / B.C.E.') ? 'ante Christum natum' : 'post Christum natum'
+    }
+
+    return `${integerToRomanNumeral(year)} ${notation}`
 }
 
 function abbreviateDate() {
@@ -179,7 +195,10 @@ export default function outputFormattedRomanDate(formData) {
             yearDisplayOption } = normalizeFormData(formData)
     
     const romanDate = convertToRomanDate(day, month, year)
-    return romanDate
+
+    const formattedYear = displayYear ? formatYear(year, era, yearDisplayOption) : ''
+
+    return `${romanDate} ${formattedYear}`
 
 }
 
