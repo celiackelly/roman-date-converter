@@ -32,7 +32,7 @@ export default function DateConverter() {
     }
 
     function handleDisplayYearChange(e) {
-        // if (!e.target.checked) { setYearDisplayOption(null) }
+        if (!e.target.checked) { setYearDisplayOption(null) }
         const isBeforeRomeFounded = year > 753 && isCommonEra === false
         if (isBeforeRomeFounded) { setYearDisplayOption(null) }
         setIsDisplayYearChecked(!isDisplayYearChecked);
@@ -70,15 +70,14 @@ export default function DateConverter() {
     }
 
     function resetDate() {
-        setIsCommonEra(true)
         setDay(today.getDate())
         setMonth(today.getMonth() + 1)
         setYear(today.getFullYear())
+        setIsCommonEra(true)
         setIsDisplayYearChecked(false)
         setYearDisplayOption(null)
         setIsAbbreviatedChecked(false)
         setSubmittedFormData(null)
-        //no need to reset day and month here; they're set in DateFieldset.js
     }
 
     if (!isDateSubmitted) {
