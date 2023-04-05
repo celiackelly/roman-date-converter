@@ -20,20 +20,20 @@ export default function DateConverter() {
     const romanDate = submittedFormData ? outputFormattedRomanDate(submittedFormData) : null
 
    function handleYearChange(e) {
-        const isBeforeRomeFounded = e.target.value >= 753 && isCommonEra === false
+        const isBeforeRomeFounded = e.target.value > 753 && isCommonEra === false
         if (isBeforeRomeFounded) { setYearDisplayOption(null) }
         setYear(Number(e.target.value));
    }
 
    function handleEraChange(e) {
-        const isBeforeRomeFounded = year >= 753 && e.target.value === 'B.C. / B.C.E.'
+        const isBeforeRomeFounded = year > 753 && e.target.value === 'B.C. / B.C.E.'
         if (isBeforeRomeFounded) { setYearDisplayOption(null) }
         setIsCommonEra(e.target.value === 'A.D. / C.E.');
     }
 
     function handleDisplayYearChange(e) {
         // if (!e.target.checked) { setYearDisplayOption(null) }
-        const isBeforeRomeFounded = year >= 753 && isCommonEra === false
+        const isBeforeRomeFounded = year > 753 && isCommonEra === false
         if (isBeforeRomeFounded) { setYearDisplayOption(null) }
         setIsDisplayYearChecked(!isDisplayYearChecked);
     }
@@ -95,7 +95,7 @@ export default function DateConverter() {
                     isCommonEra={isCommonEra}
                     handleEraChange={handleEraChange}/>
                 <OptionsFieldset 
-                    isBeforeRomeFounded={year >= 753 && !isCommonEra}
+                    isBeforeRomeFounded={year > 753 && !isCommonEra}
                     isDisplayYearChecked={isDisplayYearChecked}
                     handleDisplayYearChange={handleDisplayYearChange}
                     yearDisplayOption={yearDisplayOption}
