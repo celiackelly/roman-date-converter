@@ -9,7 +9,7 @@ export default function DateConverter() {
     const today = new Date()  
     const [year, setYear] = useState(today.getFullYear())
     const [isCommonEra, setIsCommonEra] = useState(true)
-    const [isDisplayYearChecked, setIsDisplayYearChecked] = useState(false)     //fix camel casing
+    const [isDisplayYearChecked, setIsDisplayYearChecked] = useState(false)
     const [yearDisplayOption, setYearDisplayOption] = useState("secularNotation")
     const [isDateSubmitted, setIsDateSubmitted] = useState(false)
     const [romanDate, setRomanDate] = useState('')
@@ -46,9 +46,6 @@ export default function DateConverter() {
         //convert to Roman date and set state
         setRomanDate(outputFormattedRomanDate(formData))
         setIsDateSubmitted(true)
-
-        //reset date to today 
-        resetDate()
     }
 
     function resetDate() {
@@ -57,6 +54,7 @@ export default function DateConverter() {
         setIsDisplayYearChecked(false)
         setYearDisplayOption(null)
         setIsAbbreviatedChecked(false)
+        setRomanDate('')
         //no need to reset day and month here; they're set in DateFieldset.js
     }
 
@@ -100,7 +98,9 @@ export default function DateConverter() {
                 <Button 
                     type="button" 
                     buttonText="Convert another date" 
-                    onClick={() => setIsDateSubmitted(false)}/>
+                    onClick={() => { 
+                        setIsDateSubmitted(false); 
+                        resetDate() }}/>
             </CardSection>
           );
       }
