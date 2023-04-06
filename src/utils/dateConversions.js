@@ -63,7 +63,7 @@ function calculateMarkerDays(day, month, year) {
             break;
         // The Roman calendar inserts the leap day after Feb 24th - only dates after that will be affected
         case 2: 
-            markerDays.kalends = (year % 4 === 0) && day > 24 ? 30 : 29
+            markerDays.kalends = checkLeapYear(year) && day > 24 ? 30 : 29
             break;
         default: 
             markerDays.kalends = 32;
@@ -129,7 +129,7 @@ function convertToRomanDate(day, month, year) {
                 const romanNumeralDay = integerToRomanNumeral(countdown).toLowerCase()
 
                 // normally we just count down, but Feb 25 of a leap year is weird- it's called "ante diem bis vi Kalendas Martias..."
-                const leapYearModifier = (year % 4 === 0) && day === 25 ? 'bis ' : ''
+                const leapYearModifier = checkLeapYear(year) && day === 25 ? 'bis ' : ''
 
                 romanDate = `ante diem ${leapYearModifier}${romanNumeralDay} ${romanDate}`
             }  
@@ -159,6 +159,15 @@ function formatYear(year, era, yearDisplayOption) {
     }
 
     return `${integerToRomanNumeral(year)} ${notation}`
+}
+
+export function checkLeapYear(year) {
+    if (year % 4 !== 0) { return false }
+    // a year that is evenly divisible by 100 (for example, 1900) is a leap year only if it is also evenly divisible by 400.
+    if (year % 100 === 0) { 
+        return year % 400 === 0 ? true : false
+    }
+    return true
 }
 
 export function checkBeforeRomeFounded(day, month, year, era) {

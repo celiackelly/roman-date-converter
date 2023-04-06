@@ -1,15 +1,15 @@
 import React from 'react'
+import { checkLeapYear } from '../utils/dateConversions'
 
 export default function DateFieldset({ month, day, year, handleMonthChange, handleDayChange, handleYearChange, era, handleEraChange }) {
 
   function calcDaysInMonth() {
     let daysCount = 31
-    const isLeapYear = year % 4 === 0    //also need to add 100/400 rule 
-    if (month == 4 || month == 6 || month == 9 || month == 11) {
+    if (month === 4 || month === 6 || month === 9 || month === 11) {
         daysCount = 30
     }
-    if (month == 2) {
-        daysCount = !isLeapYear ? 28 : 29
+    if (month === 2) {
+        daysCount = !checkLeapYear(year) ? 28 : 29
     } 
     return daysCount
   }  
