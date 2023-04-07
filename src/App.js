@@ -1,20 +1,15 @@
-import './App.css';
-import DateConverter from './components/DateConverter';
+import "./App.css";
+import DateConverter from "./components/DateConverter";
 
 function App() {
-
   return (
     <>
-      <header className="App-header">
-        Header- Add navigation, etc. here
-      </header>
+      <header className="App-header">Header- Add navigation, etc. here</header>
       <main>
-        <h1>Roman Date Converter</h1>    
-          <DateConverter />
+        <h1>Roman Date Converter</h1>
+        <DateConverter />
       </main>
-      <footer>
-        This is a footer
-      </footer>
+      <footer>This is a footer</footer>
     </>
   );
 }

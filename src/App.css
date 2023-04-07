@@ -17,85 +17,85 @@ main {
 }
 
 .card {
-	background-color: #eeeeee;
-	color: #000000;
-	padding: 2rem;
-	border: 1px solid #000000;
-	border-radius: 25px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	min-height: 450px;
-  }
+  background-color: #eeeeee;
+  color: #000000;
+  padding: 2rem;
+  border: 1px solid #000000;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 450px;
+}
 
-  .card fieldset {
-	border: none;
-	display: flex;
-	flex-wrap: wrap;
-	gap: 5px
-  }
-  
-  form {
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
-  }
+.card fieldset {
+  border: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
 
-  .options-fieldset {
-	text-align: left;
-	display: flex;
-	flex-direction: column;
-	min-height: 170px;
-  }
-  
- form select {
-	padding: 0px 10px;
-  }
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 
- input[type="checkbox"], 
- input[type="radio"] {
-	margin: 10px;
-  }
+.options-fieldset {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  min-height: 170px;
+}
 
- .btn-group {
-	display: flex;
-	gap: 5px;
-  }
+form select {
+  padding: 0px 10px;
+}
 
-  .form-card .btn-group {
-	justify-content: flex-end;
-  }
+input[type="checkbox"],
+input[type="radio"] {
+  margin: 10px;
+}
 
-  .results-card .btn-group {
-	justify-content: space-between;
-  }
+.btn-group {
+  display: flex;
+  gap: 5px;
+}
 
-  label {
-	width: -webkit-fit-content;
-	width: -moz-fit-content;
-	width: fit-content;
-  }
+.form-card .btn-group {
+  justify-content: flex-end;
+}
 
-  button {
-	max-width: -webkit-fit-content;
-	max-width: -moz-fit-content;
-	max-width: fit-content;
-  }
+.results-card .btn-group {
+  justify-content: space-between;
+}
 
-  .sr-only {
-	position:absolute;
-	left:-10000px;
-	top:auto;
-	width:1px;
-	height:1px;
-	overflow:hidden;
-  }
+label {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
 
-  p {
-	text-align: center;
-	font-size: 1.5em;
-  }
+button {
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+}
 
-  .italics {
-	font-style: italic;
-  }
+.sr-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+p {
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.italics {
+  font-style: italic;
+}
