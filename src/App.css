@@ -16,35 +16,86 @@ main {
   gap: 1rem;
 }
 
-.sr-only {
-  position:absolute;
-  left:-10000px;
-  top:auto;
-  width:1px;
-  height:1px;
-  overflow:hidden;
-}
-
-fieldset {
-  border: none;
-}
-
 .card {
-  background-color: #b5c6e8;
-  padding: 1rem;
-  border: 1px solid #282c34;
-  border-radius: 25px;
-  max-width: 75%;
-}
+	background-color: #eeeeee;
+	color: #000000;
+	padding: 2rem;
+	border: 1px solid #000000;
+	border-radius: 25px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	min-height: 450px;
+  }
 
-.italics {
-  font-style: italic;
-}
+  .card fieldset {
+	border: none;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 5px
+  }
+  
+  form {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+  }
 
-/*this leads to a bad experience, where clicking empty space to right of option toggles it*/
-.options-fieldset {
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-}
+  .options-fieldset {
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+	min-height: 170px;
+  }
+  
+ form select {
+	padding: 0px 10px;
+  }
 
+ input[type="checkbox"], 
+ input[type="radio"] {
+	margin: 10px;
+  }
+
+ .btn-group {
+	display: flex;
+	gap: 5px;
+  }
+
+  .form-card .btn-group {
+	justify-content: flex-end;
+  }
+
+  .results-card .btn-group {
+	justify-content: space-between;
+  }
+
+  label {
+	width: -webkit-fit-content;
+	width: -moz-fit-content;
+	width: fit-content;
+  }
+
+  button {
+	max-width: -webkit-fit-content;
+	max-width: -moz-fit-content;
+	max-width: fit-content;
+  }
+
+  .sr-only {
+	position:absolute;
+	left:-10000px;
+	top:auto;
+	width:1px;
+	height:1px;
+	overflow:hidden;
+  }
+
+  p {
+	text-align: center;
+	font-size: 1.5em;
+  }
+
+  .italics {
+	font-style: italic;
+  }
