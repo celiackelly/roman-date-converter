@@ -158,7 +158,7 @@ function formatYear(year, era, yearDisplayOption) {
         notation = (era === 'B.C. / B.C.E.') ? 'ante Christum natum' : 'post Christum natum'
     }
 
-    return `${integerToRomanNumeral(year)} ${notation}`
+    return `anno ${integerToRomanNumeral(year)} ${notation}`
 }
 
 export function checkLeapYear(year) {
@@ -209,22 +209,28 @@ export function normalizeFormData(formData) {
     return normalizedData
 }
 
-export function abbreviateDate(fullDateString) {
-    let abbreviatedDate = fullDateString
+export function abbreviateDate(dateString) {
+    let abbreviatedDate = dateString
 
     abbreviatedDate = abbreviatedDate.replace('ante diem', 'a.d.')
 
     //abbreviate day/month; remember to include periods
     abbreviatedDate = abbreviatedDate.replace(/(prid|Kal|Id|Non|Ian|Feb|Mart|Apr|Aug|Sept|Oct|Nov|Dec)\w+/g, '$1.')
 
-    //abbreviate year notation 
-    abbreviatedDate = abbreviatedDate.replace('ab urbe condita', 'A.U.C.')
-    abbreviatedDate = abbreviatedDate.replace('ante aeram vulgarem', 'ante aer. vulg.')
-    abbreviatedDate = abbreviatedDate.replace('aerae vulgaris', 'aer. vulg.')
-    abbreviatedDate = abbreviatedDate.replace('ante Christum natum', 'a.C.n.')
-    abbreviatedDate = abbreviatedDate.replace('post Christum natum', 'p.C.n.')
-
     return abbreviatedDate
+}
+
+export function abbreviateYear(yearString) {
+    let abbreviatedYear = yearString
+
+    //abbreviate year notation 
+    abbreviatedYear = abbreviatedYear.replace('ab urbe condita', 'A.U.C.')
+    abbreviatedYear = abbreviatedYear.replace('ante aeram vulgarem', 'ante aer. vulg.')
+    abbreviatedYear = abbreviatedYear.replace('aerae vulgaris', 'aer. vulg.')
+    abbreviatedYear = abbreviatedYear.replace('ante Christum natum', 'a.C.n.')
+    abbreviatedYear = abbreviatedYear.replace('post Christum natum', 'p.C.n.')
+
+    return abbreviatedYear
 }
 
 export function outputFormattedRomanDate(formData) {
@@ -239,5 +245,8 @@ export function outputFormattedRomanDate(formData) {
 
     const formattedYear = displayYear ? formatYear(year, era, yearDisplayOption) : ''
 
-    return `${romanDate} ${formattedYear}`
+    return {
+        romanDate: romanDate, 
+        formattedYear: formattedYear
+    }
 }

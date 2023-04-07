@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { checkLeapYear } from '../utils/dateConversions'
 
 export default function DateFieldset({ month, day, year, handleMonthChange, handleDayChange, handleYearChange, era, handleEraChange }) {

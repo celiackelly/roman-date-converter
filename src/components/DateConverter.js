@@ -1,9 +1,13 @@
-import { React, useState } from 'react'
+import { React, useState} from 'react';
 import CardSection from './CardSection';
 import DateFieldset from './DateFieldset';
 import OptionsFieldset from './OptionsFieldset';
 import Button from './Button';
-import { outputFormattedRomanDate, normalizeFormData, abbreviateDate, checkBeforeRomeFounded } from '../utils/dateConversions'
+import { outputFormattedRomanDate, 
+        normalizeFormData, 
+        abbreviateDate, 
+        abbreviateYear,
+        checkBeforeRomeFounded } from '../utils/dateConversions'
 
 export default function DateConverter() {
     const today = new Date()  
@@ -11,13 +15,13 @@ export default function DateConverter() {
     const [day, setDay] = useState(today.getDate())   
     const [year, setYear] = useState(today.getFullYear())
     const [era, setEra] = useState('A.D. / C.E.')
-    const [isDisplayYearChecked, setIsDisplayYearChecked] = useState(false)
+    const [isDisplayYearChecked, setIsDisplayYearChecked] = useState(true)
     const [yearDisplayOption, setYearDisplayOption] = useState('secularNotation')
     const [isDateSubmitted, setIsDateSubmitted] = useState(false)
     const [submittedFormData, setSubmittedFormData] = useState(null) 
     const [isAbbreviatedChecked, setIsAbbreviatedChecked] = useState(false)
 
-    const romanDate = submittedFormData ? outputFormattedRomanDate(submittedFormData) : null
+    const { romanDate, formattedYear } = submittedFormData ? outputFormattedRomanDate(submittedFormData) : { romanDate: null, formattedYear: null }
 
     function handleMonthChange(e) {
         const isBeforeRomeFounded = checkBeforeRomeFounded(day, e.target.value, year, era)
@@ -32,14 +36,12 @@ export default function DateConverter() {
     }
 
    function handleYearChange(e) {
-        // const isBeforeRomeFounded = e.target.value > 753 && era === 'B.C. / B.C.E.'
         const isBeforeRomeFounded = checkBeforeRomeFounded(day, month, e.target.value, era)
         if (isBeforeRomeFounded) { setYearDisplayOption(null) }
         setYear(Number(e.target.value));
    }
 
    function handleEraChange(e) {
-        // const isBeforeRomeFounded = year > 753 && e.target.value === 'B.C. / B.C.E.'
         const isBeforeRomeFounded = checkBeforeRomeFounded(day, month, year, e.target.value)
         if (isBeforeRomeFounded) { setYearDisplayOption(null) }
         setEra(e.target.value);
@@ -47,7 +49,6 @@ export default function DateConverter() {
 
     function handleDisplayYearChange(e) {
         if (!e.target.checked) { setYearDisplayOption(null) }
-        // const isBeforeRomeFounded = year > 753 && era === 'B.C. / B.C.E.'
         const isBeforeRomeFounded = checkBeforeRomeFounded(day, month, year, era)
         if (isBeforeRomeFounded) { setYearDisplayOption(null) }
         setIsDisplayYearChecked(!isDisplayYearChecked);
@@ -89,7 +90,7 @@ export default function DateConverter() {
         setMonth(today.getMonth() + 1)
         setYear(today.getFullYear())
         setEra('A.D. / C.E.')
-        setIsDisplayYearChecked(false)
+        setIsDisplayYearChecked(true)
         setYearDisplayOption(null)
         setIsAbbreviatedChecked(false)
         setSubmittedFormData(null)
@@ -97,7 +98,7 @@ export default function DateConverter() {
 
     if (!isDateSubmitted) {
         return (
-          <CardSection title="Find the Roman date for">
+          <CardSection className="form-card" title="Find the Roman date for:">
             <form method="post" onSubmit={handleSubmit}>
                 <DateFieldset 
                     month={month}
@@ -115,30 +116,37 @@ export default function DateConverter() {
                     yearDisplayOption={yearDisplayOption}
                     handleYearDisplayOptionChange={handleYearDisplayOptionChange}
                     />  
-                <Button 
-                    type="submit" 
-                    buttonText="Submit"></Button>
+                <div className='btn-group'>
+                    <Button 
+                        type="submit" 
+                        buttonText="Submit" />    
+                </div>
             </form>
           </CardSection>
         );
       } else {
           return (
-            <CardSection title="Converted date">
-                <p>{isAbbreviatedChecked ? abbreviateDate(romanDate) : romanDate}</p>
+            <CardSection className="results-card" title="Roman date:">
+                <div>
+                    <p>{isAbbreviatedChecked ? abbreviateDate(romanDate) : romanDate}</p>
+                    <p>{isAbbreviatedChecked ? abbreviateYear(formattedYear) : formattedYear}</p>
+                </div>
                 <label>
                     <input type="checkbox" name="abbreviated" checked={isAbbreviatedChecked} onChange={ (e)=> setIsAbbreviatedChecked(!isAbbreviatedChecked)}></input>
                     display abbreviated date
                 </label>
-                <Button 
-                    type="button" 
-                    buttonText="Change options" 
-                    onClick={changeOptions}/>
-                <Button 
-                    type="button" 
-                    buttonText="Convert another date" 
-                    onClick={() => { 
-                        setIsDateSubmitted(false); 
-                        resetDate() }}/>
+                <div className='btn-group'>
+                    <Button 
+                        type="button" 
+                        buttonText="Change options" 
+                        onClick={changeOptions}/>
+                    <Button 
+                        type="button" 
+                        buttonText="Convert another date" 
+                        onClick={() => { 
+                            setIsDateSubmitted(false); 
+                            resetDate() }}/>
+                </div>
             </CardSection>
           );
       }
