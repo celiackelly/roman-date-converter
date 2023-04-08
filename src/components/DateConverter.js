@@ -1,13 +1,9 @@
 import { React, useState } from "react";
-import CardSection from "./CardSection";
-import DateFieldset from "./DateFieldset";
-import OptionsFieldset from "./OptionsFieldset";
-import Button from "./Button";
+import FormCard from "./FormCard";
+import ResultsCard from "./ResultsCard";
 import {
   outputFormattedRomanDate,
   normalizeFormData,
-  abbreviateDate,
-  abbreviateYear,
   checkBeforeRomeFounded,
 } from "../utils/dateConversions";
 
@@ -21,7 +17,6 @@ export default function DateConverter() {
   const [yearDisplayOption, setYearDisplayOption] = useState("secularNotation");
   const [isDateSubmitted, setIsDateSubmitted] = useState(false);
   const [submittedFormData, setSubmittedFormData] = useState(null);
-  const [isAbbreviatedChecked, setIsAbbreviatedChecked] = useState(false);
 
   const { romanDate, formattedYear } = submittedFormData
     ? outputFormattedRomanDate(submittedFormData)
@@ -115,7 +110,6 @@ export default function DateConverter() {
     setEra(submittedFormData.era);
     setIsDisplayYearChecked(submittedFormData.displayYear);
     setYearDisplayOption(submittedFormData.yearDisplayOption);
-    setIsAbbreviatedChecked(false);
 
     //Change state so form is shown
     setIsDateSubmitted(false);
@@ -128,73 +122,41 @@ export default function DateConverter() {
     setEra("A.D. / C.E.");
     setIsDisplayYearChecked(true);
     setYearDisplayOption(null);
-    setIsAbbreviatedChecked(false);
     setSubmittedFormData(null);
+  }
+
+  function handleConvertAnotherDate() {
+    setIsDateSubmitted(false);
+    resetDate();
   }
 
   if (!isDateSubmitted) {
     return (
-      <CardSection className="form-card" title="Find the Roman date for:">
-        <form method="post" onSubmit={handleSubmit}>
-          <DateFieldset
-            month={month}
-            handleMonthChange={handleMonthChange}
-            day={day}
-            handleDayChange={handleDayChange}
-            year={year}
-            handleYearChange={handleYearChange}
-            era={era}
-            handleEraChange={handleEraChange}
-          />
-          <OptionsFieldset
-            isBeforeRomeFounded={checkBeforeRomeFounded(day, month, year, era)}
-            isDisplayYearChecked={isDisplayYearChecked}
-            handleDisplayYearChange={handleDisplayYearChange}
-            yearDisplayOption={yearDisplayOption}
-            handleYearDisplayOptionChange={handleYearDisplayOptionChange}
-          />
-          <div className="btn-group">
-            <Button type="submit" buttonText="Submit" />
-          </div>
-        </form>
-      </CardSection>
+      <FormCard
+        month={month}
+        handleMonthChange={handleMonthChange}
+        day={day}
+        handleDayChange={handleDayChange}
+        year={year}
+        handleYearChange={handleYearChange}
+        era={era}
+        handleEraChange={handleEraChange}
+        isBeforeRomeFounded={checkBeforeRomeFounded(day, month, year, era)}
+        isDisplayYearChecked={isDisplayYearChecked}
+        handleDisplayYearChange={handleDisplayYearChange}
+        yearDisplayOption={yearDisplayOption}
+        handleYearDisplayOptionChange={handleYearDisplayOptionChange}
+        handleSubmit={handleSubmit}
+      />
     );
   } else {
     return (
-      <CardSection className="results-card" title="Roman date:">
-        <div>
-          <p>{isAbbreviatedChecked ? abbreviateDate(romanDate) : romanDate}</p>
-          <p>
-            {isAbbreviatedChecked
-              ? abbreviateYear(formattedYear)
-              : formattedYear}
-          </p>
-        </div>
-        <label>
-          <input
-            type="checkbox"
-            name="abbreviated"
-            checked={isAbbreviatedChecked}
-            onChange={(e) => setIsAbbreviatedChecked(!isAbbreviatedChecked)}
-          ></input>
-          display abbreviated date
-        </label>
-        <div className="btn-group">
-          <Button
-            type="button"
-            buttonText="Change options"
-            onClick={changeOptions}
-          />
-          <Button
-            type="button"
-            buttonText="Convert another date"
-            onClick={() => {
-              setIsDateSubmitted(false);
-              resetDate();
-            }}
-          />
-        </div>
-      </CardSection>
+      <ResultsCard
+        romanDate={romanDate}
+        formattedYear={formattedYear}
+        changeOptions={changeOptions}
+        handleConvertAnotherDate={handleConvertAnotherDate}
+      />
     );
   }
 }

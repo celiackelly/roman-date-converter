@@ -150,7 +150,6 @@ function formatYear(year, era, yearDisplayOption) {
     }
     notation = "ab urbe condita";
   }
-
   //otherwise, it's B.C or A.D, in secular or Christian notation - 4 possibilities
   if (yearDisplayOption === "secularNotation") {
     notation =

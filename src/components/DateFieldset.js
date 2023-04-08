@@ -19,7 +19,6 @@ export default function DateFieldset({
     if (month === 2) {
       daysCount = !checkLeapYear(year) ? 28 : 29;
     }
-
     return daysCount;
   }
   const dayOptions = Array.from({ length: calcDaysInMonth() }, (_, i) => (
