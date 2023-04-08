@@ -2,7 +2,8 @@ import React from "react";
 import "./App.css";
 import Route from "./components/Route";
 import Header from "./components/Header";
-import About from "./components/About";
+import About from "./routes/About";
+import Home from "./routes/Home";
 import DateConverter from "./components/DateConverter";
 
 function App() {
@@ -11,8 +12,7 @@ function App() {
       <Header />
       <main>
         <Route path="/">
-          <h1>Roman Date Converter</h1>
-          <DateConverter />
+          <Home />
         </Route>
         <Route path="/about">
           <About />
