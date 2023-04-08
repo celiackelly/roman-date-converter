@@ -1,13 +1,22 @@
+import React from "react";
 import "./App.css";
+import Route from "./components/Route";
+import Header from "./components/Header";
+import About from "./components/About";
 import DateConverter from "./components/DateConverter";
 
 function App() {
   return (
     <>
-      <header className="App-header">Header- Add navigation, etc. here</header>
+      <Header />
       <main>
-        <h1>Roman Date Converter</h1>
-        <DateConverter />
+        <Route path="/">
+          <h1>Roman Date Converter</h1>
+          <DateConverter />
+        </Route>
+        <Route path="/about">
+          <About />
+        </Route>
       </main>
       <footer>This is a footer</footer>
     </>
