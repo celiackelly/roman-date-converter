@@ -1,10 +1,10 @@
 import React from "react";
+import "normalize.css";
 import "./App.css";
-import Route from "./components/Route";
 import Header from "./components/Header";
+import Route from "./components/Route";
 import About from "./routes/About";
 import Home from "./routes/Home";
-import DateConverter from "./components/DateConverter";
 
 function App() {
   return (
