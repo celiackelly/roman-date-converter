@@ -1,17 +1,9 @@
-header {
-  background-color: #293354;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+/*
 
 main {
   text-align: center;
   display: flex;
-  /* flex-direction: column; */
+  flex-direction: column;
   align-items: flex-start;
   gap: 1rem;
 }
@@ -63,15 +55,6 @@ form {
   min-height: 170px;
 }
 
-form select {
-  padding: 0px 10px;
-}
-
-input[type="checkbox"],
-input[type="radio"] {
-  margin: 10px;
-}
-
 .btn-group {
   display: flex;
   gap: 5px;
@@ -85,17 +68,123 @@ input[type="radio"] {
   justify-content: space-between;
 }
 
+p {
+  text-align: center;
+  font-size: 1.5em;
+}
+*/
+
+/* Grid
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.grid-container {
+  display: grid;
+  grid-template-rows: auto auto 10vh;
+}
+
+header,
+.main-content,
+.hero,
+footer {
+  padding: 1rem;
+}
+
+/* Header
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+header {
+  background-color: #293354;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#logo {
+  height: 50px;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  /* display: flex;
+  flex-direction: column; */
+}
+
+nav li {
+  list-style-type: none;
+  margin: 0;
+  padding: 1rem;
+}
+
+/*change this color*/
+nav li:hover {
+  background-color: #5063a1;
+}
+
+nav a {
+  text-decoration: none;
+}
+
+.button-mobile-menu-toggle {
+  border: none;
+  margin: 0;
+  padding: 5px;
+  /* display: none; */
+}
+
+.button-mobile-menu-toggle rect {
+  fill: #ffffff;
+}
+
+.button-mobile-menu-toggle:hover {
+  border-radius: 10%;
+  background-color: #5063a1;
+}
+
+/* Footer
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+footer {
+  background-color: #293354;
+  color: #ffffff;
+  display: flex;
+}
+
+/* Hero
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+/*these are temporary*/
+#fasti {
+  width: 100%;
+  background-color: #c5c9d9;
+}
+
+/* Forms
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
 label {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }
 
-button {
-  max-width: -webkit-fit-content;
-  max-width: -moz-fit-content;
-  max-width: fit-content;
+input[type="checkbox"],
+input[type="radio"] {
+  margin: 10px;
 }
+
+/* Typography
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.italics {
+  font-style: italic;
+}
+
+/* Utilities
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 .sr-only {
   position: absolute;
@@ -106,11 +195,31 @@ button {
   overflow: hidden;
 }
 
-p {
-  text-align: center;
-  font-size: 1.5em;
+/* Media Queries
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+/*
+Note: The best way to structure the use of media queries is to create the queries
+near the relevant code. For example, if you wanted to change the styles for buttons
+on small devices, paste the mobile query code up in the buttons section and style it
+there.
+*/
+
+/* Larger than mobile */
+@media (min-width: 400px) {
 }
 
-.italics {
-  font-style: italic;
+/* Larger than phablet (also point when grid becomes active) */
+@media (min-width: 550px) {
+}
+
+/* Larger than tablet */
+@media (min-width: 750px) {
+}
+
+/* Larger than desktop */
+@media (min-width: 1000px) {
+}
+
+/* Larger than Desktop HD */
+@media (min-width: 1200px) {
 }

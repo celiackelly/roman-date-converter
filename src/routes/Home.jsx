@@ -3,7 +3,7 @@ import DateConverter from "../components/DateConverter";
 
 export default function Home() {
   return (
-    <div className="container">
+    <div className="main-content">
       <h1>Roman Date Converter</h1>
       <DateConverter />
     </div>

@@ -20,9 +20,10 @@ function App() {
       <Header />
       <main>
         {/* <img id="fasti" src={fastiPortrait}></img> */}
-        <img id="fasti" src={fasti}></img>
+        <img id="fasti" className="hero" src={fasti}></img>
         {/* <img id="fasti" src={farmerCalendar}></img> */}
         {/* <img id="fasti" src={fastiAmiternini}></img> */}
+
         <Route path="/">
           <Home />
         </Route>

@@ -35,11 +35,13 @@ export default function ResultsCard({
       <div className="btn-group">
         <Button
           type="button"
+          className={"button-primary"}
           buttonText="Change options"
           onClick={changeOptions}
         />
         <Button
           type="button"
+          className={"button-primary"}
           buttonText="Convert another date"
           onClick={handleConvertAnotherDate}
         />

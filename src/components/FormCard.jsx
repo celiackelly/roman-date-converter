@@ -41,7 +41,11 @@ export default function FormCard({
           handleYearDisplayOptionChange={handleYearDisplayOptionChange}
         />
         <div className="btn-group">
-          <Button type="submit" buttonText="Submit" />
+          <Button
+            type="submit"
+            className={"button-primary"}
+            buttonText="Submit"
+          />
         </div>
       </form>
     </CardSection>
