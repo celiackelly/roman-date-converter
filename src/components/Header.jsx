@@ -4,32 +4,30 @@ import Link from "./Link";
 import Logo from "../assets/images/Janus.svg";
 
 export default function Header() {
-  const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [isNavExpanded, setIsNavExpanded] = useState(false);
 
   function handleToggleMobile() {
-    setShowMobileMenu(!showMobileMenu);
+    setIsNavExpanded(!isNavExpanded);
   }
-
-  const navLinks = (
-    <ul>
-      <li>
-        <Link href="/">Home</Link>
-      </li>
-      <li>
-        <Link href="/about">About</Link>
-      </li>
-    </ul>
-  );
 
   return (
     <header>
-      <nav>
+      <div>
         <img id="logo" src={Logo}></img>
-        {showMobileMenu ? navLinks : null}
         <MobileMenuToggleButton
           className="button-mobile-menu-toggle"
           handleToggleMobile={handleToggleMobile}
         />
+      </div>
+      <nav className={isNavExpanded ? "navbar expanded" : "navbar"}>
+        <ul>
+          <li>
+            <Link href="/">Home</Link>
+          </li>
+          <li>
+            <Link href="/about">About</Link>
+          </li>
+        </ul>
       </nav>
     </header>
   );

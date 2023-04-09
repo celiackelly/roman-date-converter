@@ -82,7 +82,7 @@ p {
   grid-template-rows: auto auto 10vh;
 }
 
-header,
+header div,
 .main-content,
 .hero,
 footer {
@@ -94,45 +94,91 @@ footer {
 
 header {
   background-color: #293354;
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr;
+  justify-content: space-between;
+  align-items: center;
 }
 
-nav {
+header div {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.navbar {
+  display: none;
+}
+
+.navbar.expanded {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar ul {
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Larger than phablet */
+@media (min-width: 550px) {
+  header {
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .navbar ul {
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+
+  .button-mobile-menu-toggle {
+    display: none;
+  }
 }
 
 #logo {
   height: 50px;
 }
 
-nav ul {
-  margin: 0;
-  padding: 0;
-  /* display: flex;
-  flex-direction: column; */
-}
-
-nav li {
+.navbar li {
   list-style-type: none;
   margin: 0;
-  padding: 1rem;
+  padding: 0;
+  text-align: center;
 }
 
 /*change this color*/
-nav li:hover {
+.navbar li:hover {
   background-color: #5063a1;
 }
 
-nav a {
+.navbar li a {
   text-decoration: none;
+  /*expands clickable area*/
+  display: inline-block;
+  width: 100%;
+  padding: 1.5rem 0;
 }
 
 .button-mobile-menu-toggle {
   border: none;
   margin: 0;
   padding: 5px;
-  /* display: none; */
+  place-self: end;
 }
 
 .button-mobile-menu-toggle rect {
@@ -208,7 +254,7 @@ there.
 @media (min-width: 400px) {
 }
 
-/* Larger than phablet (also point when grid becomes active) */
+/* Larger than phablet */
 @media (min-width: 550px) {
 }
 
