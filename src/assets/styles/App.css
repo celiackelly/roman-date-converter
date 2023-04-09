@@ -126,31 +126,6 @@ header div {
   flex-direction: column;
 }
 
-/* Larger than phablet */
-@media (min-width: 550px) {
-  header {
-    grid-template-rows: auto;
-    grid-template-columns: 1fr 1fr;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .navbar {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .navbar ul {
-    flex-direction: row;
-    justify-content: flex-end;
-    gap: 1rem;
-  }
-
-  .button-mobile-menu-toggle {
-    display: none;
-  }
-}
-
 #logo {
   height: 50px;
 }
@@ -189,6 +164,36 @@ header div {
 .button-mobile-menu-toggle:hover {
   border-radius: 10%;
   background-color: #5063a1;
+}
+
+/* Larger than phablet */
+@media (min-width: 550px) {
+  header {
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+  }
+
+  .navbar ul {
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+
+  .navbar li a {
+    padding: 1rem;
+  }
+
+  .button-mobile-menu-toggle {
+    display: none;
+  }
 }
 
 /* Footer
