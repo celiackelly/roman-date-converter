@@ -135,6 +135,7 @@ header div {
   margin: 0;
   padding: 0;
   text-align: center;
+  transition: background-color 0.3s ease-out;
 }
 
 /*change this color*/
@@ -236,6 +237,13 @@ label {
 input[type="checkbox"],
 input[type="radio"] {
   margin: 10px;
+}
+
+/* Buttons
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+button {
+  transition: background-color 0.3s ease-out;
 }
 
 /* Typography
