@@ -17,7 +17,9 @@ import fastiAmiternini from "./assets/images/fasti_amiternini.webp";
 function App() {
   return (
     <>
+      <div className="spacer"></div>
       <Header />
+      <div className="spacer"></div>
       <main>
         {/* <img id="fasti" src={fastiPortrait}></img> */}
         <img id="fasti" className="hero" src={fasti}></img>
