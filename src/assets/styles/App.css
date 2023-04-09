@@ -155,7 +155,7 @@ header div {
   border-radius: 4px;
   margin: 0;
   padding: 5px;
-  place-self: end;
+  height: 45px;
 }
 
 .button-mobile-menu-toggle rect {
@@ -164,6 +164,11 @@ header div {
 
 .button-mobile-menu-toggle:hover {
   background-color: #5063a1;
+}
+
+.button-mobile-menu-toggle:focus {
+  outline: 1px dotted #212121;
+  outline: 5px auto -webkit-focus-ring-color;
 }
 
 /* Larger than phablet */
