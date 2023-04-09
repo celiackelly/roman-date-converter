@@ -77,9 +77,10 @@ p {
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-.grid-container {
+.main-grid-container {
   display: grid;
-  grid-template-rows: auto auto 10vh;
+  grid-template-rows: auto 1fr 70px;
+  min-height: 100vh;
 }
 
 header div,
