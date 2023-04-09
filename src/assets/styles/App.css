@@ -176,7 +176,7 @@ header div {
 @media (min-width: 550px) {
   header {
     grid-template-rows: auto;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: auto auto;
     justify-content: space-between;
     align-items: center;
   }
