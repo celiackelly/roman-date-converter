@@ -13,19 +13,17 @@ import fasti from "./assets/images/fasti_praenestini.svg";
 import fastiPortrait from "./assets/images/fasti_praenestini_portrait.svg";
 import farmerCalendar from "./assets/images/farmer_calendar.svg";
 import fastiAmiternini from "./assets/images/fasti_amiternini.webp";
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <>
-      <div className="spacer"></div>
       <Header />
-      <div className="spacer"></div>
       <main>
         {/* <img id="fasti" src={fastiPortrait}></img> */}
         <img id="fasti" className="hero" src={fasti}></img>
         {/* <img id="fasti" src={farmerCalendar}></img> */}
         {/* <img id="fasti" src={fastiAmiternini}></img> */}
-
         <Route path="/">
           <Home />
         </Route>
@@ -33,7 +31,7 @@ function App() {
           <About />
         </Route>
       </main>
-      <footer>This is a footer</footer>
+      <Footer />
     </>
   );
 }
