@@ -6,20 +6,17 @@
 * http://www.opensource.org/licenses/mit-license.php
 * 12/29/2014
 *
-* Modified by Celia Kelly
+* Modified by Celia Kelly for this project
 */
 
 /* Table of contents
 ––––––––––––––––––––––––––––––––––––––––––––––––––
-- Grid (deleted this- using CSS Grid instead)
 - Base Styles
 - Typography
 - Links
 - Buttons
 - Forms
 - Lists
-- Code
-- Tables
 - Spacing
 - Utilities
 - Media Queries
@@ -102,7 +99,6 @@ a:hover {
 .button,
 button,
 input[type="submit"],
-input[type="reset"],
 input[type="button"] {
   display: inline-block;
   height: 38px;
@@ -124,12 +120,10 @@ input[type="button"] {
 .button:hover,
 button:hover,
 input[type="submit"]:hover,
-input[type="reset"]:hover,
 input[type="button"]:hover,
 .button:focus,
 button:focus,
 input[type="submit"]:focus,
-input[type="reset"]:focus,
 input[type="button"]:focus {
   color: #333;
   border-color: #888;
@@ -138,7 +132,6 @@ input[type="button"]:focus {
 .button.button-primary,
 button.button-primary,
 input[type="submit"].button-primary,
-input[type="reset"].button-primary,
 input[type="button"].button-primary {
   color: #fff;
   background-color: #33c3f0;
@@ -147,12 +140,10 @@ input[type="button"].button-primary {
 .button.button-primary:hover,
 button.button-primary:hover,
 input[type="submit"].button-primary:hover,
-input[type="reset"].button-primary:hover,
 input[type="button"].button-primary:hover,
 .button.button-primary:focus,
 button.button-primary:focus,
 input[type="submit"].button-primary:focus,
-input[type="reset"].button-primary:focus,
 input[type="button"].button-primary:focus {
   color: #fff;
   background-color: #1eaedb;
@@ -249,40 +240,6 @@ ol ul {
 }
 li {
   margin-bottom: 1rem;
-}
-
-/* Code
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-code {
-  padding: 0.2rem 0.5rem;
-  margin: 0 0.2rem;
-  font-size: 90%;
-  white-space: nowrap;
-  background: #f1f1f1;
-  border: 1px solid #e1e1e1;
-  border-radius: 4px;
-}
-pre > code {
-  display: block;
-  padding: 1rem 1.5rem;
-  white-space: pre;
-}
-
-/* Tables
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-th,
-td {
-  padding: 12px 15px;
-  text-align: left;
-  border-bottom: 1px solid #e1e1e1;
-}
-th:first-child,
-td:first-child {
-  padding-left: 0;
-}
-th:last-child,
-td:last-child {
-  padding-right: 0;
 }
 
 /* Spacing
