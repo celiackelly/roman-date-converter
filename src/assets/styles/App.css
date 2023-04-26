@@ -12,7 +12,7 @@ main > .content {
 }
 
 .card {
-  padding: 2rem;
+  /* padding: 2rem; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -41,16 +41,33 @@ form {
 
 .btn-group {
   display: flex;
-  gap: 5px;
+  flex-direction: column;
+  gap: 2rem;
 }
 
+.btn-group button {
+  width: 235px;
+  margin: 0 auto;
+}
+
+/* Larger than phablet */
+@media (min-width: 550px) {
+  .btn-group {
+    flex-direction: row;
+  }
+  .btn-group button {
+    margin: 0;
+  }
+}
+
+/* 
 .form-card .btn-group {
   justify-content: flex-end;
-}
+} */
 
-.results-card .btn-group {
+/* .results-card .btn-group {
   justify-content: space-between;
-}
+} */
 
 .results-card p {
   text-align: center;
@@ -134,6 +151,10 @@ footer {
 
 .hero {
   padding-top: 0;
+}
+
+.content {
+  padding-bottom: 5rem;
 }
 
 /* Header
