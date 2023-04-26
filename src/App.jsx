@@ -8,11 +8,6 @@ import "normalize.css";
 import "./assets/styles/skeleton.css";
 import "./assets/styles/App.css";
 
-//make multiple image sizes - this is huge!
-import fasti from "./assets/images/fasti_praenestini.svg";
-import fastiPortrait from "./assets/images/fasti_praenestini_portrait.svg";
-import farmerCalendar from "./assets/images/farmer_calendar.svg";
-import fastiAmiternini from "./assets/images/fasti_amiternini.webp";
 import Footer from "./components/Footer";
 
 function App() {
@@ -20,10 +15,11 @@ function App() {
     <>
       <Header />
       <main>
-        {/* <img id="fasti" src={fastiPortrait}></img> */}
-        <img id="fasti" className="hero" src={fasti}></img>
-        {/* <img id="fasti" src={farmerCalendar}></img> */}
-        {/* <img id="fasti" src={fastiAmiternini}></img> */}
+        <img
+          id="fasti"
+          className="hero"
+          src="https://res.cloudinary.com/celiackelly/image/upload/v1682470087/Fasti_Praenestini_Massimo_n3-removebg_j2iadx_26aee5.png"
+        ></img>
         <Route path="/">
           <Home />
         </Route>
