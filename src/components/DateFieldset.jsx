@@ -28,7 +28,7 @@ export default function DateFieldset({
   ));
 
   return (
-    <fieldset>
+    <fieldset className="date-fieldset">
       {/* add a legend */}
       <label>
         <span className="sr-only">Month</span>

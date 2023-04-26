@@ -12,7 +12,7 @@ main > .content {
 }
 
 .card {
-  /* padding: 2rem; */
+  padding-top: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -60,14 +60,22 @@ form {
   }
 }
 
-/* 
-.form-card .btn-group {
-  justify-content: flex-end;
-} */
+h1,
+h2 {
+  text-align: center;
+}
 
-/* .results-card .btn-group {
-  justify-content: space-between;
-} */
+.date-fieldset {
+  padding-left: 0.5rem;
+}
+
+/* Larger than phablet */
+@media (min-width: 550px) {
+  h1,
+  h2 {
+    text-align: inherit;
+  }
+}
 
 .results-card p {
   text-align: center;
