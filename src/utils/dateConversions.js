@@ -130,7 +130,7 @@ function convertToRomanDate(day, month, year) {
 
         // normally we just count down, but Feb 25 of a leap year is weird- it's called "ante diem bis vi Kalendas Martias..."
         const leapYearModifier =
-          checkLeapYear(year) && day === 25 ? "bis " : "";
+          checkLeapYear(year) && month === 2 && day === 25 ? "bis " : "";
 
         romanDate = `ante diem ${leapYearModifier}${romanNumeralDay} ${romanDate}`;
       }
